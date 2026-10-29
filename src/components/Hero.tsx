@@ -101,7 +101,7 @@ export default function Hero({ onSeeServices }: HeroProps) {
   return (
     <section
       ref={containerRef}
-      className="relative w-full min-h-[580px] lg:min-h-[660px] flex items-center justify-center text-center text-white bg-black/90 overflow-hidden"
+      className="relative w-full min-h-[640px] lg:min-h-[720px] flex items-center justify-center text-center text-white bg-black/90 overflow-hidden"
     >
       {/* Background HTML5 Video with transparent neutral overlay (no static picture) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -123,7 +123,7 @@ export default function Hero({ onSeeServices }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/65" />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 py-16 sm:py-24 flex flex-col items-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 pt-28 sm:pt-36 pb-20 sm:pb-28 flex flex-col items-center">
         {/* Verification badge */}
         <div
           ref={badgeRef}

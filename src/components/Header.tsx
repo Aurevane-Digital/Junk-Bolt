@@ -10,7 +10,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -30,7 +30,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-md h-[72px]"
-          : "bg-white/90 backdrop-blur-sm border-b border-slate-200 shadow-sm h-20"
+          : "bg-gradient-to-b from-black/85 via-black/40 to-transparent border-b border-transparent h-20 sm:h-24"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-4">
@@ -49,12 +49,16 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           </a>
 
           {/* Main Nav Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-800">
+          <nav className="hidden lg:flex items-center gap-6 text-sm font-semibold">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="relative py-1 tracking-wide text-slate-800 hover:text-brandgold-dark transition-colors whitespace-nowrap after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brandgold after:transition-all after:duration-250 hover:after:w-full"
+                className={`relative py-1 tracking-wide transition-colors whitespace-nowrap after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brandgold after:transition-all after:duration-250 hover:after:w-full ${
+                  isScrolled
+                    ? "text-slate-800 hover:text-brandgold-dark"
+                    : "text-white/90 hover:text-brandgold drop-shadow-sm"
+                }`}
               >
                 {link.label}
               </a>
@@ -66,7 +70,11 @@ export default function Header({ onOpenQuote }: HeaderProps) {
         <div className="flex items-center gap-3 sm:gap-4">
           <a
             aria-label="Junk Bolt on Instagram"
-            className="w-9 h-9 rounded-md border border-slate-300 text-slate-700 hover:text-brandgold-dark hover:border-brandgold flex items-center justify-center transition-all bg-slate-50 hover:bg-amber-50/50 hover:scale-105 active:scale-95 duration-150"
+            className={`w-9 h-9 rounded-md border flex items-center justify-center transition-all duration-150 hover:scale-105 active:scale-95 ${
+              isScrolled
+                ? "border-slate-300 text-slate-700 hover:text-brandgold-dark hover:border-brandgold bg-slate-50 hover:bg-amber-50/50"
+                : "border-white/25 text-white hover:text-brandgold hover:border-brandgold bg-white/10 backdrop-blur-sm hover:bg-white/20"
+            }`}
             href="https://www.instagram.com/junk.bolt/"
             rel="noopener noreferrer"
             target="_blank"
@@ -77,10 +85,14 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           </a>
 
           <a
-            className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-800 px-3 py-2 rounded border border-slate-200 hover:border-brandgold-dark transition-all bg-white whitespace-nowrap hover:shadow-sm hover:scale-[1.02] active:scale-[0.98] duration-150"
+            className={`hidden sm:flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded border whitespace-nowrap transition-all duration-150 hover:shadow-sm hover:scale-[1.02] active:scale-[0.98] ${
+              isScrolled
+                ? "border-slate-200 text-slate-800 hover:border-brandgold-dark bg-white"
+                : "border-white/30 text-white hover:border-brandgold bg-white/10 backdrop-blur-sm hover:bg-white/20"
+            }`}
             href="tel:2487097911"
           >
-            <span className="material-symbols-outlined text-[16px] text-brandgold-dark">call</span>
+            <span className="material-symbols-outlined text-[16px] text-brandgold">call</span>
             <span>248-709-7911</span>
           </a>
 
@@ -91,7 +103,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
               const el = document.getElementById("quote-form");
               el?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 text-xs sm:text-sm font-bold font-montserrat tracking-wider uppercase rounded transition-all shadow-sm cursor-pointer whitespace-nowrap hover:shadow-md hover:scale-[1.02] active:scale-[0.98] duration-150"
+            className="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 text-xs sm:text-sm font-bold font-montserrat tracking-wider uppercase rounded transition-all shadow-md cursor-pointer whitespace-nowrap hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] duration-150"
             href="#quote-form"
           >
             Contact Us
@@ -100,7 +112,9 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           {/* Mobile hamburger button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-slate-700 hover:text-slate-900 focus:outline-none transition-transform active:scale-90"
+            className={`lg:hidden p-2 focus:outline-none transition-transform active:scale-90 ${
+              isScrolled ? "text-slate-800 hover:text-slate-900" : "text-white hover:text-brandgold"
+            }`}
             aria-label="Toggle menu"
           >
             <span className="material-symbols-outlined text-2xl">
@@ -112,24 +126,24 @@ export default function Header({ onOpenQuote }: HeaderProps) {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
-          <nav className="flex flex-col space-y-3 font-semibold text-slate-800">
+        <div className="lg:hidden bg-slate-900/95 backdrop-blur-lg border-b border-slate-800 px-4 pt-3 pb-6 shadow-2xl animate-in slide-in-from-top-2 duration-200 text-white">
+          <nav className="flex flex-col space-y-3 font-semibold text-white">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="py-2 px-3 rounded-md hover:bg-slate-100 hover:text-brandgold-dark transition-colors text-sm"
+                className="py-2 px-3 rounded-md hover:bg-white/10 hover:text-brandgold transition-colors text-sm"
               >
                 {link.label}
               </a>
             ))}
-            <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+            <div className="pt-3 border-t border-slate-800 flex flex-col gap-2">
               <a
-                className="flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-slate-900 bg-slate-100 rounded-md hover:bg-amber-50 transition-colors"
+                className="flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-white bg-white/10 rounded-md hover:bg-white/20 transition-colors"
                 href="tel:2487097911"
               >
-                <span className="material-symbols-outlined text-base text-brandgold-dark">call</span>
+                <span className="material-symbols-outlined text-base text-brandgold">call</span>
                 <span>Call 248-709-7911</span>
               </a>
             </div>

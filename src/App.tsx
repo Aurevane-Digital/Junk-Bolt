@@ -50,7 +50,7 @@ export default function App() {
       <Header onOpenQuote={() => scrollTo("quote-form")} />
 
       {/* Main Content Sections */}
-      <main className="pt-20 flex-1">
+      <main className="flex-1">
         {/* 2. Hero Section */}
         <Hero onSeeServices={() => scrollTo("services")} />
 
