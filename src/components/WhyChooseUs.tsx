@@ -29,7 +29,7 @@ export default function WhyChooseUs() {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top 80%",
-              toggleActions: "play none none none",
+              once: true,
             },
           }
         );
@@ -44,12 +44,12 @@ export default function WhyChooseUs() {
             scale: 1,
             y: 0,
             duration: 0.7,
-            stagger: 0.1,
+            stagger: 0.08,
             ease: "back.out(1.4)",
             scrollTrigger: {
               trigger: gridRef.current,
               start: "top 80%",
-              toggleActions: "play none none none",
+              once: true,
             },
           }
         );

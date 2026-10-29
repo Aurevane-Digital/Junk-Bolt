@@ -34,8 +34,8 @@ export default function AboutSection({ onGetEstimate }: AboutSectionProps) {
             ease: "power3.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 75%",
-              toggleActions: "play none none none",
+              start: "top 80%",
+              once: true,
             },
           }
         );
@@ -49,12 +49,12 @@ export default function AboutSection({ onGetEstimate }: AboutSectionProps) {
             scale: 1,
             rotation: 0,
             duration: 0.8,
-            delay: 0.3,
+            delay: 0.2,
             ease: "back.out(1.5)",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 75%",
-              toggleActions: "play none none none",
+              start: "top 80%",
+              once: true,
             },
           }
         );
@@ -70,12 +70,12 @@ export default function AboutSection({ onGetEstimate }: AboutSectionProps) {
             opacity: 1,
             y: 0,
             duration: 0.7,
-            stagger: 0.12,
+            stagger: 0.1,
             ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 75%",
-              toggleActions: "play none none none",
+              start: "top 80%",
+              once: true,
             },
           }
         );

@@ -37,7 +37,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top 80%",
-              toggleActions: "play none none none",
+              once: true,
             },
           }
         );
@@ -52,12 +52,12 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
             opacity: 1,
             y: 0,
             duration: 0.8,
-            stagger: 0.15,
+            stagger: 0.12,
             ease: "power3.out",
             scrollTrigger: {
               trigger: cardsGridRef.current,
               start: "top 80%",
-              toggleActions: "play none none none",
+              once: true,
             },
           }
         );
