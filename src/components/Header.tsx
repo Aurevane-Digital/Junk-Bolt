@@ -19,8 +19,8 @@ export default function Header({ onOpenQuote }: HeaderProps) {
   const navLinks = [
     { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
-    { label: "Before & After", href: "#before-after" },
     { label: "Why Us", href: "#why-us" },
+    { label: "Before & After", href: "#before-after" },
     { label: "Testimonials", href: "#testimonials" },
     { label: "Areas We Serve", href: "#areas" },
   ];
