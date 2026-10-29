@@ -1,5 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TRAILER_TIERS } from "../data/services";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface QuoteSectionProps {
   prefilledService?: string;
@@ -18,6 +22,60 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
 
   const [submitted, setSubmitted] = useState(false);
   const [showEstimator, setShowEstimator] = useState(false);
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const formBoxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion || !sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      if (formBoxRef.current) {
+        gsap.fromTo(
+          formBoxRef.current,
+          { opacity: 0, y: 30, scale: 0.98 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: formBoxRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     if (prefilledService) {
@@ -57,9 +115,9 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-slate-50" id="quote-form">
+    <section ref={sectionRef} className="py-16 sm:py-24 bg-slate-50 overflow-hidden" id="quote-form">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        <div ref={headerRef} className="text-center mb-10">
           <div className="w-12 h-1 bg-brandgold mx-auto mb-3" />
           <h2 className="font-montserrat font-extrabold text-3xl sm:text-4xl uppercase tracking-tight text-navydark-900">
             REQUEST A FREE QUOTE
@@ -73,7 +131,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
             <button
               type="button"
               onClick={() => setShowEstimator(!showEstimator)}
-              className="inline-flex items-center gap-1.5 text-xs font-montserrat font-bold uppercase tracking-wider text-brandgold-dark bg-amber-50 hover:bg-amber-100 border border-brandgold/40 px-3.5 py-1.5 rounded-full transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs font-montserrat font-bold uppercase tracking-wider text-brandgold-dark bg-amber-50 hover:bg-amber-100 border border-brandgold/40 px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 shadow-2xs"
             >
               <span className="material-symbols-outlined text-[16px]">calculate</span>
               <span>
@@ -85,7 +143,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
 
         {/* Interactive 15-Yard Trailer Size Estimator Guide */}
         {showEstimator && (
-          <div className="mb-8 p-6 bg-white rounded-lg border border-slate-200 shadow-md animate-in fade-in duration-200">
+          <div className="mb-8 p-6 bg-white rounded-lg border border-slate-200 shadow-md animate-in fade-in zoom-in-95 duration-200">
             <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
               <div>
                 <h3 className="font-montserrat font-bold text-sm text-navydark-900 uppercase tracking-tight">
@@ -107,17 +165,17 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
                   <div
                     key={tier.size}
                     onClick={() => handleSelectTier(tier.size)}
-                    className={`p-4 rounded-lg border text-left transition-all cursor-pointer flex flex-col justify-between ${
+                    className={`p-4 rounded-lg border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between hover:-translate-y-1 ${
                       isPicked
-                        ? "border-brandgold bg-amber-50/60 shadow-sm ring-1 ring-brandgold"
-                        : "border-slate-200 hover:border-brandgold/60 bg-slate-50"
+                        ? "border-brandgold bg-amber-50/60 shadow-md ring-1 ring-brandgold"
+                        : "border-slate-200 hover:border-brandgold/60 bg-slate-50 hover:shadow-sm"
                     }`}
                   >
                     <div>
                       {/* Trailer Capacity Bar */}
                       <div className="w-full bg-slate-200 rounded-full h-2 mb-3 overflow-hidden">
                         <div
-                          className="bg-brandgold h-full rounded-full transition-all"
+                          className="bg-brandgold h-full rounded-full transition-all duration-500"
                           style={{ width: `${tier.percentage}%` }}
                         />
                       </div>
@@ -139,7 +197,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
                       type="button"
                       className={`mt-3 w-full py-1.5 text-[10px] font-montserrat font-bold uppercase rounded text-center transition-colors ${
                         isPicked
-                          ? "bg-brandgold text-navydark-950"
+                          ? "bg-brandgold text-navydark-950 font-extrabold"
                           : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-100"
                       }`}
                     >
@@ -153,10 +211,13 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
         )}
 
         {/* Quote Form Container */}
-        <div className="bg-white rounded-lg shadow-xl border border-slate-200 p-6 sm:p-10">
+        <div
+          ref={formBoxRef}
+          className="bg-white rounded-lg shadow-xl border border-slate-200 p-6 sm:p-10 will-change-transform"
+        >
           {submitted ? (
             <div className="p-6 sm:p-8 rounded-lg bg-amber-50/70 border border-brandgold-dark text-slate-900 text-center animate-in zoom-in-95 duration-200">
-              <div className="w-16 h-16 rounded-full bg-brandgold text-navydark-950 flex items-center justify-center mx-auto mb-4 shadow-md">
+              <div className="w-16 h-16 rounded-full bg-brandgold text-navydark-950 flex items-center justify-center mx-auto mb-4 shadow-md animate-bounce">
                 <span className="material-symbols-outlined text-3xl font-bold">check</span>
               </div>
               <h3 className="font-montserrat font-extrabold text-2xl uppercase tracking-tight text-navydark-900 mb-2">
@@ -177,7 +238,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="px-6 py-2.5 bg-navydark-900 hover:bg-navydark-850 text-white font-montserrat font-bold text-xs uppercase tracking-wider rounded transition-colors"
+                  className="px-6 py-2.5 bg-navydark-900 hover:bg-navydark-850 text-white font-montserrat font-bold text-xs uppercase tracking-wider rounded transition-all duration-200 hover:scale-105 active:scale-95"
                 >
                   Submit Another Request
                 </button>
@@ -194,7 +255,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
                     Your Full Name *
                   </label>
                   <input
-                    className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm"
+                    className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm transition-all focus:shadow-md"
                     id="client-name"
                     placeholder="John Miller"
                     required
@@ -211,7 +272,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
                     Phone Number *
                   </label>
                   <input
-                    className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm"
+                    className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm transition-all focus:shadow-md"
                     id="client-phone"
                     placeholder="(248) 555-0199"
                     required
@@ -231,7 +292,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
                     Email Address
                   </label>
                   <input
-                    className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm"
+                    className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm transition-all focus:shadow-md"
                     id="client-email"
                     placeholder="john@example.com"
                     type="email"
@@ -247,7 +308,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
                     Service ZIP Code *
                   </label>
                   <input
-                    className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm"
+                    className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm transition-all focus:shadow-md"
                     id="client-zip"
                     placeholder="48084 (Troy)"
                     required
@@ -266,7 +327,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
                   Type of Removal Service *
                 </label>
                 <select
-                  className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm bg-white"
+                  className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm bg-white transition-all focus:shadow-md"
                   id="service-select"
                   required
                   value={formData.serviceType}
@@ -292,7 +353,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
                   Items to Remove / Cleanout Description *
                 </label>
                 <textarea
-                  className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm"
+                  className="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3 border shadow-sm transition-all focus:shadow-md"
                   id="item-notes"
                   placeholder="Please list or describe the junk to be removed..."
                   required
@@ -303,11 +364,13 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
               </div>
 
               <button
-                className="w-full py-3.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 font-montserrat font-bold text-sm tracking-wider uppercase rounded transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                className="group w-full py-3.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 font-montserrat font-bold text-sm tracking-wider uppercase rounded transition-all duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer hover:shadow-xl hover:scale-[1.01] active:scale-[0.99]"
                 type="submit"
               >
                 <span>REQUEST MY FREE QUOTE</span>
-                <span className="material-symbols-outlined text-[18px]">bolt</span>
+                <span className="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:scale-125 group-hover:rotate-12">
+                  bolt
+                </span>
               </button>
 
               <p className="text-center text-xs text-slate-500 font-medium">

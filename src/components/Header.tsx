@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface HeaderProps {
   onOpenQuote: () => void;
@@ -6,6 +6,15 @@ interface HeaderProps {
 
 export default function Header({ onOpenQuote }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { label: "About", href: "#about" },
@@ -17,8 +26,14 @@ export default function Header({ onOpenQuote }: HeaderProps) {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <header
+      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-md h-[72px]"
+          : "bg-white/90 backdrop-blur-sm border-b border-slate-200 shadow-sm h-20"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-4">
         {/* Left Nav & Brand Logo Container */}
         <div className="flex items-center gap-8">
           <a
@@ -28,7 +43,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           >
             <img
               alt="Junk Bolt Logo"
-              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.03]"
               src="https://lh3.googleusercontent.com/aida/AEtjO1XXCF6XSxPEllaXMbgjk1ziI06M_86PVYdiCVuhi-a33iEoP8WEpUNTS8PdpFJznh8ODiuam111fckkHhwXU0-W9HmWm2l9cseV9uVjORsKzhqltci5kLftrh-X86638NoK_-zvg3QqLBC9vRYHyKfEzVW2GRTa2lsgHdXpyNmLNyU5Tz9tNZPwz-5icVZvRR6TNk7xRbMLUAuRW6t1csIRH8sR8NUvMBQW-2s_-RnI"
             />
           </a>
@@ -39,7 +54,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
               <a
                 key={link.label}
                 href={link.href}
-                className="hover:text-brandgold-dark transition-colors tracking-wide py-1 whitespace-nowrap"
+                className="relative py-1 tracking-wide text-slate-800 hover:text-brandgold-dark transition-colors whitespace-nowrap after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brandgold after:transition-all after:duration-250 hover:after:w-full"
               >
                 {link.label}
               </a>
@@ -51,7 +66,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
         <div className="flex items-center gap-3 sm:gap-4">
           <a
             aria-label="Junk Bolt on Instagram"
-            className="w-9 h-9 rounded-md border border-slate-300 text-slate-700 hover:text-brandgold-dark hover:border-brandgold flex items-center justify-center transition-all bg-slate-50 hover:bg-amber-50/50"
+            className="w-9 h-9 rounded-md border border-slate-300 text-slate-700 hover:text-brandgold-dark hover:border-brandgold flex items-center justify-center transition-all bg-slate-50 hover:bg-amber-50/50 hover:scale-105 active:scale-95 duration-150"
             href="https://www.instagram.com/junk.bolt/"
             rel="noopener noreferrer"
             target="_blank"
@@ -62,7 +77,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           </a>
 
           <a
-            className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-800 px-3 py-2 rounded border border-slate-200 hover:border-brandgold-dark transition-colors bg-white whitespace-nowrap"
+            className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-800 px-3 py-2 rounded border border-slate-200 hover:border-brandgold-dark transition-all bg-white whitespace-nowrap hover:shadow-sm hover:scale-[1.02] active:scale-[0.98] duration-150"
             href="tel:2487097911"
           >
             <span className="material-symbols-outlined text-[16px] text-brandgold-dark">call</span>
@@ -76,7 +91,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
               const el = document.getElementById("quote-form");
               el?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 text-xs sm:text-sm font-bold font-montserrat tracking-wider uppercase rounded transition-all shadow-sm cursor-pointer whitespace-nowrap"
+            className="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 text-xs sm:text-sm font-bold font-montserrat tracking-wider uppercase rounded transition-all shadow-sm cursor-pointer whitespace-nowrap hover:shadow-md hover:scale-[1.02] active:scale-[0.98] duration-150"
             href="#quote-form"
           >
             Contact Us
@@ -85,7 +100,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           {/* Mobile hamburger button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-slate-700 hover:text-slate-900 focus:outline-none"
+            className="lg:hidden p-2 text-slate-700 hover:text-slate-900 focus:outline-none transition-transform active:scale-90"
             aria-label="Toggle menu"
           >
             <span className="material-symbols-outlined text-2xl">
@@ -111,7 +126,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
             ))}
             <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
               <a
-                className="flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-slate-900 bg-slate-100 rounded-md"
+                className="flex items-center justify-center gap-2 py-2.5 text-sm font-bold text-slate-900 bg-slate-100 rounded-md hover:bg-amber-50 transition-colors"
                 href="tel:2487097911"
               >
                 <span className="material-symbols-outlined text-base text-brandgold-dark">call</span>

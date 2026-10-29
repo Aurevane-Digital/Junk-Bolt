@@ -1,5 +1,9 @@
 import { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { PROJECTS_DATA, ProjectItem } from "../data/projects";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface BeforeAfterShowcaseProps {
   onBookCleanout: (projectTitle: string) => void;
@@ -9,6 +13,10 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
   // Default to Project 4 (index 3) to match screenshot
   const [selectedIdx, setSelectedIdx] = useState<number>(3);
   const [sliderPos, setSliderPos] = useState<number>(50);
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const showcaseBoxRef = useRef<HTMLDivElement>(null);
+  const cardsGridRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState<number>(800);
 
@@ -26,16 +34,90 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
+  // GSAP ScrollTrigger reveals
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion || !sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current.children,
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      if (showcaseBoxRef.current) {
+        gsap.fromTo(
+          showcaseBoxRef.current,
+          { opacity: 0, y: 35, scale: 0.98 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.85,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: showcaseBoxRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      if (cardsGridRef.current) {
+        gsap.fromTo(
+          cardsGridRef.current.children,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: cardsGridRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const handleSelectProject = (idx: number) => {
     setSelectedIdx(idx);
     setSliderPos(50);
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-white border-b border-slate-200" id="before-after">
+    <section
+      ref={sectionRef}
+      className="py-16 sm:py-24 bg-white border-b border-slate-200 overflow-hidden"
+      id="before-after"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-left mb-10 sm:mb-12">
+        <div ref={headerRef} className="text-left mb-10 sm:mb-12">
           <div className="w-12 h-1 bg-brandgold mb-3" />
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
@@ -61,14 +143,14 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
               <button
                 key={proj.id}
                 onClick={() => handleSelectProject(idx)}
-                className={`project-tab px-4 sm:px-5 py-2.5 rounded font-montserrat font-bold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer ${
+                className={`project-tab px-4 sm:px-5 py-2.5 rounded font-montserrat font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 flex items-center gap-2 cursor-pointer hover:scale-[1.02] active:scale-[0.98] ${
                   isActive
-                    ? "bg-navydark-900 text-brandgold shadow-sm border border-navydark-900"
-                    : "bg-white text-slate-700 border border-slate-300 hover:border-brandgold hover:text-navydark-900"
+                    ? "bg-navydark-900 text-brandgold shadow-md border border-navydark-900"
+                    : "bg-white text-slate-700 border border-slate-300 hover:border-brandgold hover:text-navydark-900 shadow-sm"
                 }`}
               >
                 <span
-                  className={`w-2 h-2 rounded-full ${
+                  className={`w-2 h-2 rounded-full transition-colors ${
                     isActive ? "bg-brandgold" : "bg-slate-400"
                   }`}
                 />
@@ -81,7 +163,10 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
         </div>
 
         {/* Featured Interactive Slider Comparison Box */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden mb-12">
+        <div
+          ref={showcaseBoxRef}
+          className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden mb-12 will-change-transform"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-12">
             {/* Slider container */}
             <div
@@ -92,19 +177,19 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
               <div className="absolute inset-0 w-full h-full">
                 <img
                   alt={`${activeProject.title} After clean transformation view`}
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-center transition-opacity duration-300"
                   src={activeProject.afterImg}
                 />
               </div>
 
               {/* Before image (clipped over) */}
               <div
-                className="absolute inset-0 h-full overflow-hidden"
+                className="absolute inset-0 h-full overflow-hidden will-change-[width]"
                 style={{ width: `${sliderPos}%` }}
               >
                 <img
                   alt={`${activeProject.title} Before cluttered state view`}
-                  className="absolute top-0 left-0 h-full max-w-none object-cover object-center"
+                  className="absolute top-0 left-0 h-full max-w-none object-cover object-center transition-opacity duration-300"
                   src={activeProject.beforeImg}
                   style={{ width: `${containerWidth || 800}px`, minWidth: "100%" }}
                 />
@@ -131,7 +216,7 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
                 className="absolute top-0 bottom-0 w-1 bg-brandgold shadow-[0_0_12px_rgba(0,0,0,0.6)] z-20 pointer-events-none flex items-center justify-center transition-none"
                 style={{ left: `${sliderPos}%` }}
               >
-                <div className="w-10 h-10 rounded-full bg-brandgold text-navydark-950 shadow-2xl flex items-center justify-center border-2 border-navydark-900 -ml-[18px]">
+                <div className="w-10 h-10 rounded-full bg-brandgold text-navydark-950 shadow-2xl flex items-center justify-center border-2 border-navydark-900 -ml-[18px] transition-transform group-hover:scale-110">
                   <span className="material-symbols-outlined text-[20px] font-bold text-navydark-950 select-none">
                     drag_handle
                   </span>
@@ -215,7 +300,7 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
               <div className="mt-8 pt-6 border-t border-slate-200">
                 <button
                   onClick={() => onBookCleanout(activeProject.title)}
-                  className="w-full py-3.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 font-montserrat font-bold text-xs uppercase tracking-wider rounded transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 font-montserrat font-bold text-xs uppercase tracking-wider rounded transition-all duration-200 shadow-md flex items-center justify-center gap-2 cursor-pointer hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <span>BOOK YOUR CLEANOUT</span>
                   <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -244,23 +329,23 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div ref={cardsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {PROJECTS_DATA.map((proj, idx) => {
               const isSelected = idx === selectedIdx;
               return (
                 <div
                   key={proj.id}
                   onClick={() => handleSelectProject(idx)}
-                  className={`project-card cursor-pointer rounded-lg border-2 bg-white p-4 transition-all hover:shadow-lg flex flex-col justify-between group ${
+                  className={`project-card cursor-pointer rounded-lg border-2 bg-white p-4 transition-all duration-200 hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between group will-change-transform ${
                     isSelected
-                      ? "border-brandgold shadow-md"
-                      : "border-slate-200 shadow-sm hover:border-brandgold/50"
+                      ? "border-brandgold shadow-md ring-1 ring-brandgold/40"
+                      : "border-slate-200 shadow-sm hover:border-brandgold/60"
                   }`}
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span
-                        className={`text-[11px] font-extrabold font-montserrat uppercase px-2 py-0.5 rounded ${
+                        className={`text-[11px] font-extrabold font-montserrat uppercase px-2 py-0.5 rounded transition-colors ${
                           isSelected
                             ? "bg-brandgold text-navydark-950"
                             : "bg-slate-100 text-slate-700"
@@ -273,7 +358,7 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
                       </span>
                     </div>
 
-                    <h4 className="font-montserrat font-bold text-sm text-navydark-900 uppercase tracking-tight mb-3 group-hover:text-brandgold-dark transition-colors">
+                    <h4 className="font-montserrat font-bold text-sm text-navydark-900 uppercase tracking-tight mb-3 group-hover:text-brandgold-dark transition-colors duration-200">
                       {proj.id}. {proj.title}
                     </h4>
 
@@ -282,17 +367,17 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
                       <div className="relative rounded overflow-hidden aspect-[3/4] bg-slate-100 border border-slate-200">
                         <img
                           alt={`Project ${proj.id} Before`}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                           src={proj.beforeImg}
                         />
-                        <span className="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/80 text-[9px] font-bold text-white uppercase rounded">
+                        <span className="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/80 text-[9px] font-bold text-white uppercase rounded backdrop-blur-xs">
                           Before
                         </span>
                       </div>
                       <div className="relative rounded overflow-hidden aspect-[3/4] bg-slate-100 border border-brandgold/40">
                         <img
                           alt={`Project ${proj.id} After`}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                           src={proj.afterImg}
                         />
                         <span className="absolute bottom-1 right-1 px-1.5 py-0.5 bg-brandgold text-[9px] font-bold text-navydark-950 uppercase rounded">

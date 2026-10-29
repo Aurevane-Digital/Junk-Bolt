@@ -1,14 +1,54 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 interface FooterProps {
   onNavClick: (id: string) => void;
 }
 
 export default function Footer({ onNavClick }: FooterProps) {
+  const footerRef = useRef<HTMLElement>(null);
+  const cardsGridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion || !footerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      if (cardsGridRef.current) {
+        gsap.fromTo(
+          cardsGridRef.current.children,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: footerRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <footer className="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
+    <footer ref={footerRef} className="bg-slate-900 text-slate-300 py-16 border-t border-slate-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div ref={cardsGridRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Side: Navy Card with Gold Details */}
-          <div className="lg:col-span-6 bg-navydark-850 text-white rounded-lg p-8 sm:p-10 shadow-lg flex flex-col justify-between border border-slate-700">
+          <div className="lg:col-span-6 bg-navydark-850 text-white rounded-lg p-8 sm:p-10 shadow-lg flex flex-col justify-between border border-slate-700 transition-all duration-300 hover:border-brandgold/40 hover:shadow-xl will-change-transform">
             <div className="flex flex-col">
               <span className="text-xs font-bold font-montserrat tracking-widest uppercase text-brandgold mb-1">
                 DIRECT CONTACT
@@ -60,7 +100,7 @@ export default function Footer({ onNavClick }: FooterProps) {
             <div className="mt-8 pt-6 border-t border-slate-700 flex items-center justify-between">
               <a
                 aria-label="Instagram"
-                className="w-9 h-9 rounded bg-brandgold text-navydark-950 hover:bg-brandgold-hover flex items-center justify-center transition-colors shadow-sm"
+                className="w-9 h-9 rounded bg-brandgold text-navydark-950 hover:bg-brandgold-hover flex items-center justify-center transition-all duration-200 shadow-sm hover:scale-105 active:scale-95"
                 href="https://www.instagram.com/junk.bolt/"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -76,11 +116,11 @@ export default function Footer({ onNavClick }: FooterProps) {
           </div>
 
           {/* Right Side: White Background with Brand Emblem & Legal Title */}
-          <div className="lg:col-span-6 bg-white rounded-lg p-8 sm:p-10 border border-slate-200 shadow-md flex flex-col justify-center items-start text-slate-800">
+          <div className="lg:col-span-6 bg-white rounded-lg p-8 sm:p-10 border border-slate-200 shadow-md flex flex-col justify-center items-start text-slate-800 transition-all duration-300 hover:border-brandgold/40 hover:shadow-xl will-change-transform">
             <div className="flex items-center gap-3 mb-6">
               <img
                 alt="Junk Bolt Logo"
-                className="h-12 sm:h-14 w-auto object-contain"
+                className="h-12 sm:h-14 w-auto object-contain transition-transform duration-200 hover:scale-105"
                 src="https://lh3.googleusercontent.com/aida/AEtjO1XXCF6XSxPEllaXMbgjk1ziI06M_86PVYdiCVuhi-a33iEoP8WEpUNTS8PdpFJznh8ODiuam111fckkHhwXU0-W9HmWm2l9cseV9uVjORsKzhqltci5kLftrh-X86638NoK_-zvg3QqLBC9vRYHyKfEzVW2GRTa2lsgHdXpyNmLNyU5Tz9tNZPwz-5icVZvRR6TNk7xRbMLUAuRW6t1csIRH8sR8NUvMBQW-2s_-RnI"
               />
             </div>
