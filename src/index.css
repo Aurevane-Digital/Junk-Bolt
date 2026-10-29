@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brandgold-50: #fdfbf7;
+  --color-brandgold-100: #faf4e6;
+  --color-brandgold-200: #f4e5c4;
+  --color-brandgold-300: #ebd196;
+  --color-brandgold-400: #dfb55c;
+  --color-brandgold-500: #d99b06;
+  --color-brandgold: #d99b06;
+  --color-brandgold-hover: #c48905;
+  --color-brandgold-dark: #b87c04;
+  --color-brandgold-darker: #926102;
+  --color-brandgold-muted: #dfab36;
+
+  --color-navydark-950: #0a1424;
+  --color-navydark-900: #122543;
+  --color-navydark-850: #162d52;
+  --color-navydark-800: #1c3660;
+  --color-navydark-700: #274578;
+
+  --color-charcoal-950: #0b111e;
+  --color-charcoal-900: #111827;
+  --color-charcoal-850: #1a2233;
+  --color-charcoal-800: #1f2937;
+  --color-charcoal-700: #374151;
+  --color-charcoal-600: #4b5563;
+
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.fill-current {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1c30;
+}
+::-webkit-scrollbar-thumb {
+  background: #c98a0c;
+  border-radius: 4px;
+}

@@ -1,0 +1,896 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="web_standard" name="shell-type">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+      body { font-family: 'Inter', sans-serif; }
+      h1, h2, h3, h4, .font-heading { font-family: 'Montserrat', sans-serif; }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0f1c30; }
+    ::-webkit-scrollbar-thumb { background: #c98a0c; border-radius: 4px; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandgold: {
+              50: '#fdfbf7',
+              100: '#faf4e6',
+              200: '#f4e5c4',
+              300: '#ebd196',
+              400: '#dfb55c',
+              500: '#d99b06',
+              DEFAULT: '#d99b06',
+              hover: '#c48905',
+              dark: '#b87c04',
+              darker: '#926102',
+              muted: '#dfab36'
+            },
+            navydark: {
+              950: '#0a1424',
+              900: '#122543',
+              850: '#162d52',
+              800: '#1c3660',
+              700: '#274578'
+            },
+            charcoal: {
+              950: '#0b111e',
+              900: '#111827',
+              850: '#1a2233',
+              800: '#1f2937',
+              700: '#374151',
+              600: '#4b5563'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brandgold selection:text-navydark-950">
+<!-- 1. HEADER BAR -->
+<header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+<!-- Left Nav & Brand Logo Container -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-3 shrink-0 group" href="#">
+<img alt="Junk Bolt Logo" class="h-10 sm:h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XXCF6XSxPEllaXMbgjk1ziI06M_86PVYdiCVuhi-a33iEoP8WEpUNTS8PdpFJznh8ODiuam111fckkHhwXU0-W9HmWm2l9cseV9uVjORsKzhqltci5kLftrh-X86638NoK_-zvg3QqLBC9vRYHyKfEzVW2GRTa2lsgHdXpyNmLNyU5Tz9tNZPwz-5icVZvRR6TNk7xRbMLUAuRW6t1csIRH8sR8NUvMBQW-2s_-RnI">
+</a>
+<!-- Main Nav Links -->
+<nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-800">
+<a class="hover:text-brandgold-dark transition-colors tracking-wide py-1" href="#about">About</a>
+<a class="hover:text-brandgold-dark transition-colors tracking-wide py-1" href="#services">Services</a>
+<a class="hover:text-brandgold-dark transition-colors tracking-wide py-1" href="#before-after">Before &amp; After</a>
+<a class="hover:text-brandgold-dark transition-colors tracking-wide py-1" href="#why-us">Why Us</a>
+<a class="hover:text-brandgold-dark transition-colors tracking-wide py-1" href="#testimonials">Testimonials</a>
+<a class="hover:text-brandgold-dark transition-colors tracking-wide py-1" href="#areas">Areas We Serve</a>
+</nav>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-3 sm:gap-4">
+<a aria-label="Junk Bolt on Instagram" class="w-9 h-9 rounded-md border border-slate-300 text-slate-700 hover:text-brandgold-dark hover:border-brandgold flex items-center justify-center transition-all bg-slate-50 hover:bg-amber-50/50" href="https://www.instagram.com/junk.bolt/" rel="noopener noreferrer" target="_blank">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+</svg>
+</a>
+<a class="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-800 px-3 py-2 rounded border border-slate-200 hover:border-brandgold-dark transition-colors bg-white" href="tel:2487097911">
+<span class="material-symbols-outlined text-[16px] text-brandgold-dark">call</span>
+<span class="">248-709-7911</span>
+</a>
+<a class="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 text-xs sm:text-sm font-bold font-montserrat tracking-wider uppercase rounded transition-all shadow-sm" href="#quote-form">Contact Us</a>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- HERO SECTION (TONED DOWN: RICH NAVY WITH MUTED GOLD/AMBER ACCENTS) -->
+<section class="relative w-full min-h-[560px] lg:min-h-[640px] flex items-center justify-center text-center text-white bg-navydark-900 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Junk Bolt Fleet in SE Michigan" class="w-full h-full object-cover object-center opacity-25" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtSNbMX7A6nIpar-FPf3SHfHE_XDLl4HJCm4y7X0tynSoA_N85sKY1xskCkWvtjMM-NoKTztQi-WBmOdHMlZlhXLDVrbwzm4I2QIy6H3TqYhChgC50YTa0n4q-K6Yt10-xPEm4tn2D7UtKnV4VXyuRSivBjXVgfQXk_laS53qsLiBasQ9ckusNzNzFsKGW6uNtn_edYhBn67W4JOTlPg-a7nrMcCV87KDcm7DULiIC">
+<div class="absolute inset-0 bg-gradient-to-b from-navydark-950/90 via-navydark-900/85 to-navydark-950/95"></div>
+</div>
+<div class="relative z-10 max-w-5xl mx-auto px-4 py-16 sm:py-24 flex flex-col items-center">
+<div class="inline-flex items-center gap-2 mb-4 px-3.5 py-1.5 rounded-full bg-navydark-800/80 border border-brandgold/40 text-brandgold text-xs font-bold font-montserrat uppercase tracking-wider backdrop-blur-sm">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+          Licensed and Insured • Locally Operated in Michigan
+        </div>
+<h1 class="font-montserrat font-extrabold text-3xl sm:text-5xl lg:text-6xl uppercase tracking-tight leading-tight sm:leading-none text-white drop-shadow-sm">
+          RELIABLE HAULING &amp; REMOVAL<br class="hidden sm:inline"> <span class="text-brandgold">DONE RIGHT</span>
+</h1>
+<p class="mt-6 max-w-2xl text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          From furniture and appliance removal to full garage and basement cleanouts, Junk Bolt delivers dependable hauling backed by professional 15-yard trailers and upfront pricing.
+        </p>
+<!-- Dual Buttons -->
+<div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+<a class="w-full sm:w-auto px-8 py-3.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 font-montserrat font-bold text-xs sm:text-sm tracking-wider uppercase transition-all rounded shadow-md flex items-center justify-center gap-2" href="#services">
+            SEE OUR SERVICES
+          </a>
+<a class="w-full sm:w-auto px-8 py-3.5 border-2 border-slate-400 hover:border-brandgold text-white hover:text-brandgold font-montserrat font-bold text-xs sm:text-sm tracking-wider uppercase transition-all rounded bg-navydark-950/40 backdrop-blur-sm flex items-center justify-center gap-2" href="tel:2487097911">
+<span class="material-symbols-outlined text-[18px]">phone</span>
+            CALL 248-709-7911
+          </a>
+</div>
+</div>
+</section>
+<!-- SECTION 2: INTRO / ABOUT PREVIEW (CRISP LIGHT SURFACE WITH RICH AMBER ACCENTS) -->
+<section class="py-16 sm:py-24 bg-white" id="about">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- Left Column: Trailer Photo with Emblem Badge -->
+<div class="lg:col-span-6 relative">
+<div class="relative rounded-lg overflow-hidden shadow-lg border border-slate-200">
+<img alt="Junk Bolt owner standing atop heavy-duty hauling trailer" class="w-full h-[340px] sm:h-[400px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG2gi0f4pqeOMteXYjvAOcb_BVRiFXDeqAuUWblTqgphr4bxsScqtt3fjyE3RP7MtL5w_HE4PluJ4SzZuYCt6AWCG1IqPmrSYYL8TMZdYUnaAmrRTlfLrrSaR48saPsevYViaqQ6boyIKLmQFaDjbhVBKxyuB-pbS1PueWKSDm8b-b2ry_w85LGi3ZGaFO83m6wxS7kbHd_Obevm0qOcW9LGRqyvIQtodTr1tK0e-C_lLLExs_SvaF2sb4S7o9DLzWh7239p5elU-jXYs">
+</div>
+<!-- Vintage Badge overlapping top-left with muted gold tone -->
+<div class="absolute -top-6 -left-4 sm:-top-8 sm:-left-6 w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-brandgold text-navydark-950 border-4 border-white shadow-xl flex flex-col items-center justify-center p-2 text-center select-none">
+<span class="text-[9px] sm:text-[10px] font-montserrat font-bold tracking-widest uppercase">JUNK BOLT</span>
+<div class="flex items-center justify-center my-0.5">
+<span class="material-symbols-outlined text-navydark-950 text-2xl sm:text-3xl">bolt</span>
+<span class="font-montserrat font-extrabold text-sm sm:text-lg italic tracking-tight text-navydark-950 ml-0.5">MI</span>
+</div>
+<span class="bg-navydark-900 text-brandgold text-[8px] sm:text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">FOUNDED 19 Y/O</span>
+<span class="text-[8px] sm:text-[9px] text-navydark-900 font-bold tracking-wider mt-0.5">EST. LOCAL</span>
+</div>
+</div>
+<!-- Right Column: Clean Bold Typography -->
+<div class="lg:col-span-6 flex flex-col justify-center">
+<div class="w-12 h-1 bg-brandgold mb-4"></div>
+<h2 class="font-montserrat font-extrabold text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-slate-900 leading-tight">
+              TRUSTED JUNK REMOVAL SERVICES FOR HOMES AND BUSINESSES
+            </h2>
+<p class="mt-6 text-slate-600 text-base sm:text-lg leading-relaxed">
+              From single-item pickups to large-scale residential and commercial cleanouts, Junk Bolt delivers safe, dependable junk removal backed by honest communication and hard work. When you need the job done right, our licensed and insured team is ready to help.
+            </p>
+<p class="mt-4 text-slate-600 text-base leading-relaxed">
+              Founded right here in Southeastern Michigan, we operate high-capacity 15-yard dump trailers that handle everything from heavy furniture and broken appliances to contractor debris and entire estate cleanouts.
+            </p>
+<div class="mt-8 flex flex-wrap items-center gap-4">
+<a class="inline-flex items-center gap-2 px-6 py-3 bg-brandgold hover:bg-brandgold-hover text-navydark-950 font-montserrat font-bold text-xs sm:text-sm tracking-wider uppercase rounded transition-colors shadow-sm" href="#quote-form">
+                GET AN ESTIMATE <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<span class="text-sm font-semibold text-slate-500">Same-Day &amp; Next-Day Available</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: SERVICES GRID (TONED DOWN: BALANCED SLATE & NAVY CARDS WITH WARM AMBER ACCENTS) -->
+<section class="py-16 sm:py-24 bg-slate-100 text-slate-900 border-t border-b border-slate-200" id="services">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-left mb-10 sm:mb-12">
+<div class="w-12 h-1 bg-brandgold mb-3"></div>
+<h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl uppercase tracking-tight text-navydark-900">
+            JUNK REMOVAL SERVICES
+          </h2>
+<p class="mt-2 text-slate-600 text-sm sm:text-base">Comprehensive residential and commercial hauling with heavy-duty equipment.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1: Residential -->
+<div class="relative group rounded-lg overflow-hidden min-h-[320px] p-8 flex flex-col justify-between border border-slate-300 bg-white hover:border-brandgold transition-all shadow-md">
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-md bg-amber-50 border border-brandgold/30 flex items-center justify-center text-brandgold-dark mb-4">
+<span class="material-symbols-outlined text-2xl">home</span>
+</div>
+<h3 class="font-montserrat font-extrabold text-2xl uppercase tracking-tight text-navydark-900">RESIDENTIAL</h3>
+<p class="mt-3 text-slate-600 text-sm sm:text-base font-normal leading-relaxed max-w-md">
+                Furniture, mattresses, appliances, garages, basements, attics, yard debris, and general household clutter removed with zero stress.
+              </p>
+</div>
+<div class="relative z-10 pt-6">
+<a class="inline-flex items-center justify-center px-5 py-2.5 border-2 border-navydark-900 hover:border-brandgold text-navydark-900 hover:text-brandgold-dark font-montserrat font-bold text-xs uppercase tracking-wider transition-colors rounded" href="#quote-form">
+                VIEW RESIDENTIAL
+              </a>
+</div>
+</div>
+<!-- Card 2: Commercial -->
+<div class="relative group rounded-lg overflow-hidden min-h-[320px] p-8 flex flex-col justify-between border border-slate-300 bg-white hover:border-brandgold transition-all shadow-md">
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-md bg-amber-50 border border-brandgold/30 flex items-center justify-center text-brandgold-dark mb-4">
+<span class="material-symbols-outlined text-2xl">apartment</span>
+</div>
+<h3 class="font-montserrat font-extrabold text-2xl uppercase tracking-tight text-navydark-900">COMMERCIAL</h3>
+<p class="mt-3 text-slate-600 text-sm sm:text-base font-normal leading-relaxed max-w-md">
+                Office and retail fixture removal, warehouse cleanouts, cardboard baling, property management turnovers, and commercial site prep.
+              </p>
+</div>
+<div class="relative z-10 pt-6">
+<a class="inline-flex items-center justify-center px-5 py-2.5 border-2 border-navydark-900 hover:border-brandgold text-navydark-900 hover:text-brandgold-dark font-montserrat font-bold text-xs uppercase tracking-wider transition-colors rounded" href="#quote-form">
+                VIEW COMMERCIAL
+              </a>
+</div>
+</div>
+<!-- Card 3: Wide Full Banner (Navy & Warm Amber Accent) -->
+<div class="md:col-span-2 relative rounded-lg overflow-hidden p-8 sm:p-10 border border-navydark-800 bg-navydark-900 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
+<div class="relative z-10 max-w-2xl">
+<span class="text-xs font-bold font-montserrat tracking-widest uppercase text-brandgold">COMPREHENSIVE REMOVAL</span>
+<h3 class="font-montserrat font-extrabold text-2xl sm:text-3xl uppercase tracking-tight text-white mt-1">
+                CONSTRUCTION DEBRIS, CLEANOUTS &amp; MORE
+              </h3>
+<p class="mt-3 text-slate-300 text-sm sm:text-base font-normal leading-relaxed">
+                Drywall, lumber, tile, remodel scrap, estate cleanouts, shed tear-downs, and heavy industrial load-outs. We handle all heavy lifting and responsible disposal.
+              </p>
+<div class="mt-6">
+<a class="inline-flex items-center justify-center px-6 py-3 bg-brandgold hover:bg-brandgold-hover text-navydark-950 font-montserrat font-bold text-xs uppercase tracking-wider rounded transition-colors shadow-sm" href="#quote-form">
+                  VIEW ALL SERVICES
+                </a>
+</div>
+</div>
+<!-- Right Side Graphic Accent Box -->
+<div class="w-full md:w-64 h-36 rounded-lg bg-navydark-800/80 border border-slate-700 flex items-center justify-center p-4 shrink-0 shadow-inner">
+<div class="flex items-center justify-center gap-4 text-white">
+<div class="w-12 h-12 rounded-full bg-navydark-950 border border-slate-600 flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-2xl text-slate-300">rv_hookup</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-brandgold text-navydark-950 flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-2xl font-bold">bolt</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-navydark-950 border border-slate-600 flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-2xl text-slate-300">delete</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: WHY CHOOSE JUNK BOLT (PROFESSIONAL MUTED NAVY/WARM ACCENT BAND) -->
+<section class="py-16 sm:py-20 bg-navydark-950 text-white border-b border-slate-800" id="why-us">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h2 class="font-montserrat font-extrabold text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-white">
+          WHY CHOOSE <span class="text-brandgold">JUNK BOLT?</span>
+</h2>
+<div class="mt-12 grid grid-cols-2 md:grid-cols-5 gap-6 sm:gap-8 items-start">
+<!-- Item 1 -->
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-navydark-850 border border-brandgold/30 flex items-center justify-center shadow-lg mb-4 group-hover:border-brandgold transition-colors">
+<span class="material-symbols-outlined text-brandgold text-2xl sm:text-3xl">location_city</span>
+</div>
+<span class="font-montserrat font-bold text-xs sm:text-sm text-slate-200 tracking-wide max-w-[150px]">
+              Serving SE Michigan
+            </span>
+</div>
+<!-- Item 2 -->
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-navydark-850 border border-brandgold/30 flex items-center justify-center shadow-lg mb-4 group-hover:border-brandgold transition-colors">
+<span class="material-symbols-outlined text-brandgold text-2xl sm:text-3xl">verified_user</span>
+</div>
+<span class="font-montserrat font-bold text-xs sm:text-sm text-slate-200 tracking-wide max-w-[150px]">
+              Licensed and Insured
+            </span>
+</div>
+<!-- Item 3 -->
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-navydark-850 border border-brandgold/30 flex items-center justify-center shadow-lg mb-4 group-hover:border-brandgold transition-colors">
+<span class="material-symbols-outlined text-brandgold text-2xl sm:text-3xl">construction</span>
+</div>
+<span class="font-montserrat font-bold text-xs sm:text-sm text-slate-200 tracking-wide max-w-[150px]">
+              Residential &amp; Commercial Experience
+            </span>
+</div>
+<!-- Item 4 -->
+<div class="flex flex-col items-center group">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-navydark-850 border border-brandgold/30 flex items-center justify-center shadow-lg mb-4 group-hover:border-brandgold transition-colors">
+<span class="material-symbols-outlined text-brandgold text-2xl sm:text-3xl">forum</span>
+</div>
+<span class="font-montserrat font-bold text-xs sm:text-sm text-slate-200 tracking-wide max-w-[150px]">
+              Clear Communication
+            </span>
+</div>
+<!-- Item 5 -->
+<div class="col-span-2 md:col-span-1 flex flex-col items-center group">
+<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-navydark-850 border border-brandgold/30 flex items-center justify-center shadow-lg mb-4 group-hover:border-brandgold transition-colors">
+<span class="material-symbols-outlined text-brandgold text-2xl sm:text-3xl">workspace_premium</span>
+</div>
+<span class="font-montserrat font-bold text-xs sm:text-sm text-slate-200 tracking-wide max-w-[150px]">
+              Reliable, Consistent Work
+            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: BEFORE & AFTER SHOWCASE (ALL 4 REAL PROJECTS PROMINENTLY FEATURED) -->
+<section class="py-16 sm:py-24 bg-white border-b border-slate-200" id="before-after">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-left mb-10 sm:mb-12">
+<div class="w-12 h-1 bg-brandgold mb-3"></div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-montserrat font-extrabold text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-navydark-900">BEFORE &amp; AFTER: REAL TRANSFORMATIONS</h2>
+<p class="mt-3 text-slate-600 text-base sm:text-lg max-w-3xl leading-relaxed">Explore all 4 real local transformations from garages and dumpster corrals to shed demolitions. Drag the interactive slider above or click any project card below to inspect full results.</p>
+</div>
+<div class="hidden lg:flex items-center gap-2 text-xs font-montserrat font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-3.5 py-2 rounded border border-slate-200">
+<span class="material-symbols-outlined text-brandgold-dark text-[18px]">touch_app</span>
+<span class="">Click cards below to compare</span>
+</div>
+</div>
+</div>
+<!-- Tabs Switcher -->
+<div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-8">
+<button class="project-tab px-4 sm:px-5 py-2.5 rounded font-montserrat font-bold text-xs sm:text-sm uppercase tracking-wider transition-all bg-white text-slate-700 border border-slate-300 hover:border-brandgold hover:text-navydark-900 flex items-center gap-2" data-index="0" onclick="switchProject(0)">
+<span class="w-2 h-2 rounded-full bg-slate-400"></span>
+<span class="">1. Garage Cleanout</span>
+</button>
+<button class="project-tab px-4 sm:px-5 py-2.5 rounded font-montserrat font-bold text-xs sm:text-sm uppercase tracking-wider transition-all bg-white text-slate-700 border border-slate-300 hover:border-brandgold hover:text-navydark-900 flex items-center gap-2" data-index="1" onclick="switchProject(1)">
+<span class="w-2 h-2 rounded-full bg-slate-400"></span>
+<span class="">2. Dumpster Corral Sweep</span>
+</button>
+<button class="project-tab px-4 sm:px-5 py-2.5 rounded font-montserrat font-bold text-xs sm:text-sm uppercase tracking-wider transition-all bg-white text-slate-700 border border-slate-300 hover:border-brandgold hover:text-navydark-900 flex items-center gap-2" data-index="2" onclick="switchProject(2)">
+<span class="w-2 h-2 rounded-full bg-slate-400"></span>
+<span class="">3. Shed Demolition</span>
+</button>
+<button class="project-tab px-4 sm:px-5 py-2.5 rounded font-montserrat font-bold text-xs sm:text-sm uppercase tracking-wider transition-all bg-navydark-900 text-brandgold shadow-sm border border-navydark-900 flex items-center gap-2" data-index="3" onclick="switchProject(3)">
+<span class="w-2 h-2 rounded-full bg-brandgold"></span>
+<span class="">4. Collapsed Outbuilding</span>
+</button>
+</div>
+<!-- Featured Interactive Slider Comparison -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden mb-12">
+<div class="grid grid-cols-1 lg:grid-cols-12">
+<!-- Slider container -->
+<div class="lg:col-span-8 relative bg-slate-900 min-h-[380px] sm:min-h-[460px] lg:min-h-[520px] max-h-[560px] overflow-hidden select-none group" id="slider-container">
+<!-- After image (base) -->
+<div class="absolute inset-0 w-full h-full">
+<img alt="After clean transformation view" class="w-full h-full object-cover object-center" id="after-img-elem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt0NIYUzJrcc8T25aTK3AdRMGD9vtNfpKRIPZu12vBNcOWTbhKuBT5ucBSXIlelmaoZnfs5NlANNLeKcP1imj5qT2IryMB1490j5xdpsQ4zvYpdm7u8rqyrZRkWbrkYn4KjaPsyNuWGwoQOx3FwI9HYI-lzFp47gRj-yzUERrV44nCCPqgFT48OE_V7mPJ4qN_1UENK0OHgRvoc_a2k5tPB9Io84o7e4_9yehxvIW7THmbiLUjXEfZxQ">
+</div>
+<!-- Before image (clipped over) -->
+<div class="absolute inset-0 h-full overflow-hidden w-1/2" id="before-image-wrapper" style="width: 50%;">
+<img alt="Before cluttered state view" class="absolute top-0 left-0 h-full max-w-none object-cover object-center" id="before-img-elem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCqdL0__0t5k0YO8yclc2FKjZGE_1clF94k5D0S_lWKgPISaywmiUJvra-Ixzns7iTxv8SQYzBSdF1LUxSSRbwLx3gsXv0-4lXqM2HXq-IgF2uE-V-3GiPrO0tqgb0WqcqzNFF2Cj-if5syWpQkDryUxaVJxKZQWK7xp2M4qTuKnuXCxOCuYN0aAcagcqNFaK4g2zx_9yLt_qTMjYMemgO4viIKGs0NE7pvxakkncpRJv7vrhAqLzDMQ" style="width: 810px; min-width: 100%;">
+</div>
+<!-- Badges -->
+<div class="absolute top-4 left-4 z-20 pointer-events-none">
+<span class="px-3 py-1.5 rounded font-montserrat font-extrabold text-xs uppercase tracking-wider bg-navydark-950/90 border border-slate-700 text-white shadow-md flex items-center gap-1.5 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[15px] text-amber-400">history</span>BEFORE
+</span>
+</div>
+<div class="absolute top-4 right-4 z-20 pointer-events-none">
+<span class="px-3 py-1.5 rounded font-montserrat font-extrabold text-xs uppercase tracking-wider bg-brandgold text-navydark-950 shadow-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">check_circle</span>AFTER
+</span>
+</div>
+<!-- Divider line & drag handle -->
+<div class="absolute top-0 bottom-0 w-1 bg-brandgold shadow-[0_0_12px_rgba(0,0,0,0.6)] z-20 pointer-events-none flex items-center justify-center" id="slider-divider" style="left: 50%;">
+<div class="w-10 h-10 rounded-full bg-brandgold text-navydark-950 shadow-2xl flex items-center justify-center border-2 border-navydark-900 -ml-[18px]">
+<span class="material-symbols-outlined text-[20px] font-bold text-navydark-950 select-none">drag_handle</span>
+</div>
+</div>
+<!-- Range input controller -->
+<input aria-label="Comparison slider" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 m-0 p-0" id="before-after-range" max="100" min="0" type="range" value="50">
+<div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none bg-navydark-950/85 px-3 py-1 rounded-full border border-brandgold/40 backdrop-blur-sm shadow-md text-white text-[11px] font-montserrat font-semibold tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-brandgold">sync_alt</span>DRAG TO COMPARE
+</div>
+</div>
+<!-- Project Details Panel -->
+<div class="lg:col-span-4 p-6 sm:p-8 flex flex-col justify-between bg-white border-t lg:border-t-0 lg:border-l border-slate-200">
+<div>
+<div class="flex items-center gap-2 text-xs font-bold font-montserrat uppercase text-brandgold-dark tracking-wider mb-2">
+<span class="material-symbols-outlined text-[18px]">verified</span> verified completed job
+</div>
+<h3 class="font-montserrat font-extrabold text-xl sm:text-2xl text-navydark-900 uppercase tracking-tight" id="project-title">COLLAPSED OUTBUILDING TEARDOWN</h3>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1" id="project-loc">Birmingham, MI</p>
+<p class="mt-4 text-sm text-slate-600 leading-relaxed" id="project-desc">Severe structural failure with caved-in roof trusses, buckled wall panels, broken doorways, and scattered debris hazard. Demolished safely piece-by-piece, removed via 15-yard trailer, and ground fully leveled.</p>
+<div class="mt-6 space-y-3 pt-4 border-t border-slate-100">
+<div class="flex items-center justify-between text-xs sm:text-sm">
+<span class="text-slate-500 font-medium flex items-center gap-1.5"><span class="material-symbols-outlined text-brandgold-dark text-[18px]">timer</span>Turnaround:</span>
+<span class="font-montserrat font-bold text-navydark-900" id="stat-time">Completed in 1 Day</span>
+</div>
+<div class="flex items-center justify-between text-xs sm:text-sm">
+<span class="text-slate-500 font-medium flex items-center gap-1.5"><span class="material-symbols-outlined text-brandgold-dark text-[18px]">local_shipping</span>Trailer Load:</span>
+<span class="font-montserrat font-bold text-navydark-900" id="stat-load">Heavy Structural Demolition</span>
+</div>
+<div class="flex items-center justify-between text-xs sm:text-sm">
+<span class="text-slate-500 font-medium flex items-center gap-1.5"><span class="material-symbols-outlined text-brandgold-dark text-[18px]">cleaning_services</span>Quality:</span>
+<span class="font-montserrat font-bold text-brandgold-dark" id="stat-finish">Ground-Level Cleared</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-200">
+<a class="w-full py-3.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 font-montserrat font-bold text-xs uppercase tracking-wider rounded transition-colors shadow-md flex items-center justify-center gap-2" href="#quote-form">
+<span class="">BOOK YOUR CLEANOUT</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<p class="text-center text-[11px] text-slate-400 font-semibold uppercase tracking-wider mt-2.5">Upfront Pricing • No Dump Fee Surcharges</p>
+</div>
+</div>
+</div>
+</div>
+<!-- ALL 4 PROJECTS GALLERY CARDS (VISIBLE SIDE-BY-SIDE INSPECTION) -->
+<div>
+<div class="flex items-center justify-between mb-6">
+<div>
+<h3 class="font-montserrat font-extrabold text-lg sm:text-xl uppercase tracking-tight text-navydark-900">All 4 Verified Project Galleries</h3>
+<p class="text-xs sm:text-sm text-slate-600">Click any card to inspect in the live interactive slider above.</p>
+</div>
+<span class="text-xs font-bold text-brandgold-dark uppercase tracking-wider hidden sm:inline-block">100% Real Michigan Jobs</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Project Card 1 -->
+<div class="project-card cursor-pointer rounded-lg border-2 bg-white p-4 transition-all hover:shadow-lg flex flex-col justify-between group border-slate-200 shadow-sm" data-card-index="0" onclick="switchProject(0)">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[11px] font-extrabold font-montserrat uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-700">Project 1</span>
+<span class="text-[11px] font-semibold text-slate-500">Rochester Hills</span>
+</div>
+<h4 class="font-montserrat font-bold text-sm text-navydark-900 uppercase tracking-tight mb-3 group-hover:text-brandgold-dark transition-colors">1. Garage Cleanout</h4>
+<!-- Side-by-Side Thumbnail Pair -->
+<div class="grid grid-cols-2 gap-2 mb-3">
+<div class="relative rounded overflow-hidden aspect-[3/4] bg-slate-100 border border-slate-200">
+<img alt="Project 1 Before" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCXPA84-rcmDzaFzHxfzknpnsmy5974M7ytzlnyv34H9R9rAPe-hOVXgzkaK2OUGqZcDnLV_s_nhzdN__3oHLrwN6sMGMxWtllqFM8lSHFsAkkpfw3kxN9NS3gd5ES0qdy_5rurQmW3z28iQmxhO-RUN_M8bqaQuQnx5YwT8zmBbKqOwkZbuM8XouPYXLS_pt0a_UrfF3bG2jCtaw_aJGGpq4rpfyQ9uDkg02sY705pVWHwRgRagkKOw">
+<span class="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/80 text-[9px] font-bold text-white uppercase rounded">Before</span>
+</div>
+<div class="relative rounded overflow-hidden aspect-[3/4] bg-slate-100 border border-brandgold/40">
+<img alt="Project 1 After" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPEpQ7Y5iwA_8t0fZpJCcciufRanSwOJjv0EWWIjuoKOG5SResPo0Bj_hmiAFBFY7KJJXHzGpU3Bq3JvsB0oe8HGhDlo9nNcjM8hCUQri7EhjOXOGjyoIaROEl1dE-B4pKEUmJsir1LMfmVC2dj4vMauLnhZ4f8aRm1G_ax_M7m_3QSz4-B7gNazmjkosXPbpfs16VVrwqzEJMbJ1LJtxzqJXNjfj66Ex1iNCmGAhNtj6GGyNWm89ERw">
+<span class="absolute bottom-1 right-1 px-1.5 py-0.5 bg-brandgold text-[9px] font-bold text-navydark-950 uppercase rounded">After</span>
+</div>
+</div>
+</div>
+<div class="pt-3 border-t border-slate-100 text-[11px] text-slate-600 space-y-1">
+<p class="font-medium text-slate-700">⏱️ Completed in 3.5 Hours</p>
+<p class="font-medium text-slate-700">🚛 1 Full 15-Yard Trailer</p>
+<span class="inline-block mt-2 font-montserrat font-bold text-[10px] text-brandgold-dark uppercase tracking-wider group-hover:underline">Click to view in slider →</span>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="project-card cursor-pointer rounded-lg border bg-white p-4 transition-all hover:border-brandgold hover:shadow-md flex flex-col justify-between group border-slate-200 shadow-sm" data-card-index="1" onclick="switchProject(1)">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[11px] font-extrabold font-montserrat uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-700">Project 2</span>
+<span class="text-[11px] font-semibold text-slate-500">Royal Oak</span>
+</div>
+<h4 class="font-montserrat font-bold text-sm text-navydark-900 uppercase tracking-tight mb-3 group-hover:text-brandgold-dark transition-colors">2. Dumpster Corral Overflow</h4>
+<!-- Side-by-Side Thumbnail Pair -->
+<div class="grid grid-cols-2 gap-2 mb-3">
+<div class="relative rounded overflow-hidden aspect-[3/4] bg-slate-100 border border-slate-200">
+<img alt="Project 2 Before" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAILaDXOW_9HnSr0G5bHzzK1cR6gNVs1q3jhl-k3Wp0y7z-eqNlBZKiKNRo2_loOOWVcn2PiN_VMzM5XNaSMgvSf_9IEm58b4BhHOunniqYFFJbJjbtqzbzfcWQMNUSXhPp4x7h2opcuSxcPfp-9m_xT8G2DR3r7Dkg9TF-v8Jc1aNyvPoA_2KweOGTWOVa_7qgeVyOkpfmrWrj8iTGFmUYPHNPQnKR6LBYTN6Kkb2idIXIi7ylZ7DkHQ">
+<span class="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/80 text-[9px] font-bold text-white uppercase rounded">Before</span>
+</div>
+<div class="relative rounded overflow-hidden aspect-[3/4] bg-slate-100 border border-slate-200">
+<img alt="Project 2 After" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-HK7voKVw5HTHSFJ7UUA6vqYoBCPgBS_ayNY5SuItethMhA8iU-VsRRshk05Yfgu1i5e_c8wggvHdvTktG8Af94GXXQxj2ahDSQw80qan6R9FWDbPhp7KUEflF-IONKrf2EUlZPAbpVOTPQiiO4ot_jMhvrnE1koBxM04tr1RntGbYJ1cYtLPNGqkgC3qw_MpRJjwQITmtkXmffcGB-Rn5vyKtpYCjtVEx8vPqz38jAZSr0p-zBa60g">
+<span class="absolute bottom-1 right-1 px-1.5 py-0.5 bg-brandgold text-[9px] font-bold text-navydark-950 uppercase rounded">After</span>
+</div>
+</div>
+</div>
+<div class="pt-3 border-t border-slate-100 text-[11px] text-slate-600 space-y-1">
+<p class="font-medium text-slate-700">⏱️ Completed in 2 Hours</p>
+<p class="font-medium text-slate-700">🏢 Commercial Overflow Cleanout</p>
+<span class="inline-block mt-2 font-montserrat font-bold text-[10px] text-brandgold-dark uppercase tracking-wider group-hover:underline">Click to view in slider →</span>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="project-card cursor-pointer rounded-lg border bg-white p-4 transition-all hover:border-brandgold hover:shadow-md flex flex-col justify-between group border-slate-200 shadow-sm" data-card-index="2" onclick="switchProject(2)">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[11px] font-extrabold font-montserrat uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-700">Project 3</span>
+<span class="text-[11px] font-semibold text-slate-500">Bloomfield Hills</span>
+</div>
+<h4 class="font-montserrat font-bold text-sm text-navydark-900 uppercase tracking-tight mb-3 group-hover:text-brandgold-dark transition-colors">3. Shed Demolition &amp; Yard</h4>
+<!-- Side-by-Side Thumbnail Pair -->
+<div class="grid grid-cols-2 gap-2 mb-3">
+<div class="relative rounded overflow-hidden aspect-[3/4] bg-slate-100 border border-slate-200">
+<img alt="Project 3 Before" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR68aD7cPsFPWXpSbyCdc-Ifle6-A5JuuoneUEGbhwvwA14m9XRIr2gHJH7yhK1dI_vISqZ5f5xUkdiEWH2lFFxbjyC5KJSEOUmcA8puxRYd6M7r4kWoF8weojPu785DdBHrN-TizuLFHeV96PdfUz-od52gUv93tgHFLNlLcj_ZRQdYyl3AriGZIzRK4NHQg1hH4XpwiVNHmZi7RyM4bZq_ySs7ibP-HPwftMU8sewxRCkKEq6D_hFw">
+<span class="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/80 text-[9px] font-bold text-white uppercase rounded">Before</span>
+</div>
+<div class="relative rounded overflow-hidden aspect-[3/4] bg-slate-100 border border-slate-200">
+<img alt="Project 3 After" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxph0umkuDWIxVDwffRguOW28VMQvGEE4e8JrPE77ShQigrnqfLKGnpIepJ5em_grPboEGtu7DO2yLr9Tm5MnYALdg6YlrHzHO6oUspivBwAVFDWWp-uq-p5842aMABXDRVI_FX0qXh__LVZsYJZUyBYqK6t5bLjpUBJJ6bfa1SXJdnrr93qPqxi6p9HBbFmuI0OVPq9e482-XNzxfR--o_ba7I1iEbg5EJfpEA9mKvA4lWRUmX2J2ug">
+<span class="absolute bottom-1 right-1 px-1.5 py-0.5 bg-brandgold text-[9px] font-bold text-navydark-950 uppercase rounded">After</span>
+</div>
+</div>
+</div>
+<div class="pt-3 border-t border-slate-100 text-[11px] text-slate-600 space-y-1">
+<p class="font-medium text-slate-700">⏱️ Completed in 1 Day</p>
+<p class="font-medium text-slate-700">🔨 Full Demolition &amp; Haul</p>
+<span class="inline-block mt-2 font-montserrat font-bold text-[10px] text-brandgold-dark uppercase tracking-wider group-hover:underline">Click to view in slider →</span>
+</div>
+</div>
+<!-- Project Card 4 -->
+<div class="project-card cursor-pointer rounded-lg border bg-white p-4 transition-all hover:border-brandgold hover:shadow-md flex flex-col justify-between group border-brandgold shadow-md" data-card-index="3" onclick="switchProject(3)">
+<div>
+<div class="flex items-center justify-between mb-3">
+<span class="text-[11px] font-extrabold font-montserrat uppercase px-2 py-0.5 rounded bg-brandgold text-navydark-950">Project 4</span>
+<span class="text-[11px] font-semibold text-slate-500">Birmingham</span>
+</div>
+<h4 class="font-montserrat font-bold text-sm text-navydark-900 uppercase tracking-tight mb-3 group-hover:text-brandgold-dark transition-colors">4. Collapsed Outbuilding Teardown</h4>
+<!-- Side-by-Side Thumbnail Pair -->
+<div class="grid grid-cols-2 gap-2 mb-3">
+<div class="relative rounded overflow-hidden aspect-[3/4] bg-slate-100 border border-slate-200">
+<img alt="Project 4 Before" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCqdL0__0t5k0YO8yclc2FKjZGE_1clF94k5D0S_lWKgPISaywmiUJvra-Ixzns7iTxv8SQYzBSdF1LUxSSRbwLx3gsXv0-4lXqM2HXq-IgF2uE-V-3GiPrO0tqgb0WqcqzNFF2Cj-if5syWpQkDryUxaVJxKZQWK7xp2M4qTuKnuXCxOCuYN0aAcagcqNFaK4g2zx_9yLt_qTMjYMemgO4viIKGs0NE7pvxakkncpRJv7vrhAqLzDMQ">
+<span class="absolute bottom-1 left-1 px-1.5 py-0.5 bg-black/80 text-[9px] font-bold text-white uppercase rounded">Before</span>
+</div>
+<div class="relative rounded overflow-hidden aspect-[3/4] bg-slate-100 border border-slate-200">
+<img alt="Project 4 After" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt0NIYUzJrcc8T25aTK3AdRMGD9vtNfpKRIPZu12vBNcOWTbhKuBT5ucBSXIlelmaoZnfs5NlANNLeKcP1imj5qT2IryMB1490j5xdpsQ4zvYpdm7u8rqyrZRkWbrkYn4KjaPsyNuWGwoQOx3FwI9HYI-lzFp47gRj-yzUERrV44nCCPqgFT48OE_V7mPJ4qN_1UENK0OHgRvoc_a2k5tPB9Io84o7e4_9yehxvIW7THmbiLUjXEfZxQ">
+<span class="absolute bottom-1 right-1 px-1.5 py-0.5 bg-brandgold text-[9px] font-bold text-navydark-950 uppercase rounded">After</span>
+</div>
+</div>
+</div>
+<div class="pt-3 border-t border-slate-100 text-[11px] text-slate-600 space-y-1">
+<p class="font-medium text-slate-700">⏱️ Completed in 1 Day</p>
+<p class="font-medium text-slate-700">🏗️ Heavy Structural Demolition</p>
+<span class="inline-block mt-2 font-montserrat font-bold text-[10px] text-brandgold-dark uppercase tracking-wider group-hover:underline">Click to view in slider →</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: CUSTOMER REVIEWS (PROFESSIONAL MUTED LIGHT/CARD SYSTEM) -->
+<section class="py-16 sm:py-24 bg-slate-50" id="testimonials">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-left mb-12 sm:mb-16">
+<div class="w-12 h-1 bg-brandgold mb-3"></div>
+<h2 class="font-montserrat font-extrabold text-2xl sm:text-3xl lg:text-4xl uppercase tracking-tight text-navydark-900">
+            SEE WHAT OUR CUSTOMERS ARE SAYING
+          </h2>
+</div>
+<!-- Reviews with Slate / Warm Gold Accents -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-white text-slate-800 rounded-lg p-8 sm:p-10 shadow-md flex flex-col justify-between border-t-4 border-t-brandgold border border-slate-200">
+<div class="flex flex-col">
+<div class="flex items-center gap-1 text-brandgold mb-5">
+<span class="material-symbols-outlined text-2xl fill-current">star</span>
+<span class="material-symbols-outlined text-2xl fill-current">star</span>
+<span class="material-symbols-outlined text-2xl fill-current">star</span>
+<span class="material-symbols-outlined text-2xl fill-current">star</span>
+<span class="material-symbols-outlined text-2xl fill-current">star</span>
+</div>
+<p class="text-slate-700 text-base sm:text-lg leading-relaxed italic font-normal">
+                "Responsive, excellent communication, follow through, job done in a flash... They arrived early, backed the dump trailer right into the driveway, and loaded two rooms worth of old furniture in under 45 minutes."
+              </p>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+<p class="font-montserrat font-extrabold text-sm tracking-wider uppercase text-navydark-900">— SARAH K., TROY MI</p>
+<span class="text-xs font-semibold text-slate-400">Verified Client</span>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-white text-slate-800 rounded-lg p-8 sm:p-10 shadow-md flex flex-col justify-between border-t-4 border-t-brandgold border border-slate-200">
+<div class="flex flex-col">
+<div class="flex items-center gap-1 text-brandgold mb-5">
+<span class="material-symbols-outlined text-2xl fill-current">star</span>
+<span class="material-symbols-outlined text-2xl fill-current">star</span>
+<span class="material-symbols-outlined text-2xl fill-current">star</span>
+<span class="material-symbols-outlined text-2xl fill-current">star</span>
+<span class="material-symbols-outlined text-2xl fill-current">star</span>
+</div>
+<p class="text-slate-700 text-base sm:text-lg leading-relaxed italic font-normal">
+                "Junk Bolt has been my go-to hauler for years. Fast and reliable service at a very fair price. If I could give them a hundred stars out of five I would. Prompt, great job, and swept up completely clean when done."
+              </p>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+<p class="font-montserrat font-extrabold text-sm tracking-wider uppercase text-navydark-900">— MARK D., ROCHESTER HILLS</p>
+<span class="text-xs font-semibold text-slate-400">Verified Client</span>
+</div>
+</div>
+</div><div class="mt-10 p-6 sm:p-8 rounded-lg bg-white border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6"><div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left"><div class="w-12 h-12 rounded-full bg-amber-50 border border-brandgold/40 flex items-center justify-center shrink-0 text-brandgold-dark shadow-sm"><span class="material-symbols-outlined text-2xl">rate_review</span></div><div><div class="flex items-center justify-center sm:justify-start gap-1 text-brandgold mb-1"><span class="material-symbols-outlined text-[18px] fill-current">star</span><span class="material-symbols-outlined text-[18px] fill-current">star</span><span class="material-symbols-outlined text-[18px] fill-current">star</span><span class="material-symbols-outlined text-[18px] fill-current">star</span><span class="material-symbols-outlined text-[18px] fill-current">star</span><span class="text-xs font-bold text-slate-700 ml-1.5 font-montserrat uppercase tracking-wider">5.0 Star Rating</span></div><h3 class="font-montserrat font-extrabold text-base sm:text-lg uppercase tracking-tight text-navydark-900">Recently worked with Junk Bolt?</h3><p class="text-slate-600 text-xs sm:text-sm mt-0.5">Your feedback helps local Michigan families and businesses find reliable hauling.</p></div></div><div class="shrink-0 w-full sm:w-auto text-center"><a class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brandgold hover:bg-brandgold-hover text-navydark-950 font-montserrat font-bold text-xs sm:text-sm uppercase tracking-wider rounded transition-colors shadow-sm w-full sm:w-auto" href="https://www.google.com/maps/place/Junk+Bolt/@42.3619592,-83.7816001,10z/data=!4m15!1m7!3m6!1s0x8d92c874147f4885:0x98e4ae1ea952549e!2sJunk+Bolt!8m2!3d42.4582885!4d-83.454252!16s%2Fg%2F11z9hbcj3n!3m6!1s0x8d92c874147f4885:0x98e4ae1ea952549e!8m2!3d42.4582885!4d-83.454252!15sCglqdW5rIGJvbHRaCyIJanVuayBib2x0kgEUanVua19yZW1vdmFsX3NlcnZpY2WaAURDaTlEUVVsUlFVTnZaRU5vZEhsalJqbHZUMnN3TkdGSFVtRk9NMDQwVkcxS1dGZElSbXRSV0d0NlRqSnNiRTVIWXhBQuABAPoBBQixARBI!16s%2Fg%2F11z9hbcj3n?entry=ttu&amp;g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D" rel="noopener noreferrer" target="_blank"><span class="">Leave a Review on Google</span><span class="material-symbols-outlined text-[16px]">open_in_new</span></a></div></div>
+</div>
+</section>
+<!-- SECTION 7: SERVICE AREAS (DEEP NAVY THEME WITH GOLD ACCENTS INSTEAD OF BLINDING YELLOW) -->
+<section class="relative py-16 sm:py-24 bg-navydark-900 text-white overflow-hidden border-t border-b border-slate-800" id="areas">
+<div class="absolute inset-0 z-0">
+<img alt="SE Michigan Map Background" class="w-full h-full object-cover opacity-15" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw0TGujZiJc7cvPi5bc3U5jGh1ozEhu2ZMta3SlQxnXgW1Vv8c_-3_uLfhxm1Q1ZLbe0_dSitWSyVmBfxdkcWNAWCOsFohA7hkYIlvAWmJmhh2mJXl5_fK77CcvZLUQJiZAE2eOpqqZyujMfk0r_dfpA3WXztAEANSWn6bIkoJPEvCzqwtnaLoKxg5FT4e5TCi3pTgNpJxNAsopWEQ6p5nsZJCjPg-4g7RP-i7t8UA">
+<div class="absolute inset-0 bg-gradient-to-r from-navydark-950 via-navydark-900/90 to-navydark-950"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left Column -->
+<div class="lg:col-span-6 flex flex-col items-start">
+<span class="text-xs font-bold font-montserrat tracking-widest uppercase text-brandgold mb-1">LOCAL DISPATCH COVERAGE</span>
+<h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-white leading-tight">
+              SERVING SOUTHEASTERN<br><span class="text-brandgold">MICHIGAN</span>
+</h2>
+<p class="mt-4 text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+              Serving Troy, Rochester Hills, Birmingham, Royal Oak, Sterling Heights, Shelby Township, Macomb, Detroit Metro, and surrounding areas.
+            </p>
+<div class="mt-6 flex flex-wrap gap-2">
+<span class="px-3.5 py-1.5 rounded bg-navydark-800 border border-slate-700 text-white font-montserrat font-bold text-xs uppercase shadow-sm">Oakland County</span>
+<span class="px-3.5 py-1.5 rounded bg-navydark-800 border border-slate-700 text-white font-montserrat font-bold text-xs uppercase shadow-sm">Macomb County</span>
+<span class="px-3.5 py-1.5 rounded bg-navydark-800 border border-slate-700 text-white font-montserrat font-bold text-xs uppercase shadow-sm">Wayne County</span>
+</div>
+<div class="mt-8">
+<a class="inline-flex items-center justify-center px-6 py-3 border-2 border-brandgold text-brandgold hover:bg-brandgold hover:text-navydark-950 font-montserrat font-bold text-xs uppercase tracking-wider transition-colors rounded shadow-sm" href="#quote-form">
+                SEE ALL SERVICE AREAS
+              </a>
+</div>
+</div>
+<!-- Right Column: Map Visual -->
+<div class="lg:col-span-6">
+<div class="rounded-lg overflow-hidden border border-slate-700 shadow-2xl bg-white">
+<div class="relative w-full h-[320px] bg-cover bg-center" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCw0TGujZiJc7cvPi5bc3U5jGh1ozEhu2ZMta3SlQxnXgW1Vv8c_-3_uLfhxm1Q1ZLbe0_dSitWSyVmBfxdkcWNAWCOsFohA7hkYIlvAWmJmhh2mJXl5_fK77CcvZLUQJiZAE2eOpqqZyujMfk0r_dfpA3WXztAEANSWn6bIkoJPEvCzqwtnaLoKxg5FT4e5TCi3pTgNpJxNAsopWEQ6p5nsZJCjPg-4g7RP-i7t8UA&quot;);">
+<!-- Pin Overlay -->
+<div class="absolute inset-0 flex items-center justify-center bg-black/10">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-4xl text-brandgold drop-shadow-md">location_on</span>
+<span class="px-3 py-1 rounded bg-navydark-950 text-brandgold font-montserrat font-bold text-[10px] uppercase shadow border border-brandgold/40">SE Michigan Dispatch</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 8: QUOTE REQUEST FORM -->
+<section class="py-16 sm:py-24 bg-slate-50" id="quote-form">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-10">
+<div class="w-12 h-1 bg-brandgold mx-auto mb-3"></div>
+<h2 class="font-montserrat font-extrabold text-3xl sm:text-4xl uppercase tracking-tight text-navydark-900">
+            REQUEST A FREE QUOTE
+          </h2>
+<p class="mt-3 text-slate-600 text-base max-w-xl mx-auto">
+            Fill out this simple form for upfront rates. No hidden dump fees, zero surprises.
+          </p>
+</div>
+<div class="bg-white rounded-lg shadow-xl border border-slate-200 p-6 sm:p-10">
+<form class="space-y-6" id="quote-form-element" onsubmit="event.preventDefault(); document.getElementById('form-success').classList.remove('hidden');">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-montserrat font-bold uppercase tracking-wider text-slate-700 mb-2" for="client-name">Your Full Name *</label>
+<input class="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3" id="client-name" placeholder="John Miller" required="" type="text">
+</div>
+<div>
+<label class="block text-xs font-montserrat font-bold uppercase tracking-wider text-slate-700 mb-2" for="client-phone">Phone Number *</label>
+<input class="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3" id="client-phone" placeholder="(248) 555-0199" required="" type="tel">
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs font-montserrat font-bold uppercase tracking-wider text-slate-700 mb-2" for="client-email">Email Address</label>
+<input class="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3" id="client-email" placeholder="john@example.com" type="email">
+</div>
+<div>
+<label class="block text-xs font-montserrat font-bold uppercase tracking-wider text-slate-700 mb-2" for="client-zip">Service ZIP Code *</label>
+<input class="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3" id="client-zip" placeholder="48084 (Troy)" required="" type="text">
+</div>
+</div>
+<div>
+<label class="block text-xs font-montserrat font-bold uppercase tracking-wider text-slate-700 mb-2" for="service-select">Type of Removal Service *</label>
+<select class="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3" id="service-select" required="">
+<option value="">Select removal type...</option>
+<option value="furniture">Furniture / Couch / Mattress Removal</option>
+<option value="appliance">Appliance Removal (Refrigerator, Washer, etc.)</option>
+<option value="garage">Garage Cleanout</option>
+<option value="basement">Basement &amp; Attic Cleanout</option>
+<option value="commercial">Commercial / Retail Clearout</option>
+<option value="construction">Construction &amp; Remodel Trash</option>
+<option value="yard">Yard Waste / Debris</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-montserrat font-bold uppercase tracking-wider text-slate-700 mb-2" for="item-notes">Items to Remove / Cleanout Description *</label>
+<textarea class="w-full rounded border-slate-300 focus:border-brandgold focus:ring-brandgold text-sm py-2.5 px-3" id="item-notes" placeholder="Please list or describe the junk to be removed..." required="" rows="3"></textarea>
+</div>
+<button class="w-full py-3.5 bg-brandgold hover:bg-brandgold-hover text-navydark-950 font-montserrat font-bold text-sm tracking-wider uppercase rounded transition-colors shadow-md flex items-center justify-center gap-2" type="submit">
+<span class="">REQUEST MY FREE QUOTE</span>
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</button>
+<div class="hidden p-4 rounded bg-amber-50 border border-brandgold-dark text-slate-800 text-sm flex items-center gap-2" id="form-success">
+<span class="material-symbols-outlined text-brandgold-dark">check_circle</span>
+<span class="">Thank you! Your quote request has been dispatched. Our team will contact you shortly.</span>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- 9. SPLIT CONTACT & BRAND BLOCK (TONED DOWN: BALANCED NAVY CARD + CRISP WHITE LOGO CARD) -->
+<footer class="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+<!-- Left Side: Navy Card with Gold Details -->
+<div class="lg:col-span-6 bg-navydark-850 text-white rounded-lg p-8 sm:p-10 shadow-lg flex flex-col justify-between border border-slate-700">
+<div class="flex flex-col">
+<span class="text-xs font-bold font-montserrat tracking-widest uppercase text-brandgold mb-1">DIRECT CONTACT</span>
+<h3 class="font-montserrat font-extrabold text-2xl sm:text-3xl uppercase tracking-tight text-white mb-6">
+              CONTACT US
+            </h3>
+<div class="space-y-4 text-sm sm:text-base text-slate-300 font-normal">
+<p class="font-extrabold text-white text-xl tracking-wide flex items-center gap-2">
+<span class="material-symbols-outlined text-brandgold text-2xl">call</span>
+<a class="hover:text-brandgold transition-colors" href="tel:2487097911">248-709-7911</a>
+</p>
+<p class="flex items-center gap-2">
+<span class="material-symbols-outlined text-brandgold text-xl">mail</span>
+<a class="hover:text-brandgold underline font-semibold transition-colors text-white" href="mailto:getjunkbolt@gmail.com">getjunkbolt@gmail.com</a>
+</p>
+<p class="text-slate-300 flex items-start gap-2">
+<span class="material-symbols-outlined text-brandgold text-xl shrink-0 mt-0.5">location_on</span>
+<span class="">Serving Oakland, Macomb &amp; Wayne Counties<br>Southeastern Michigan</span>
+</p>
+<div class="pt-2 text-xs sm:text-sm text-slate-300 leading-relaxed flex items-center gap-2">
+<span class="material-symbols-outlined text-brandgold text-xl">schedule</span>
+<span class=""><strong class="text-white">Monday – Sunday:</strong> 8:00 AM – 8:00 PM</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-700 flex items-center justify-between">
+<a aria-label="Instagram" class="w-9 h-9 rounded bg-brandgold text-navydark-950 hover:bg-brandgold-hover flex items-center justify-center transition-colors shadow-sm" href="https://www.instagram.com/junk.bolt/" rel="noopener noreferrer" target="_blank">
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
+</svg>
+</a>
+<span class="text-xs text-brandgold font-montserrat uppercase tracking-wider font-bold">Fast Dispatch</span>
+</div>
+</div>
+<!-- Right Side: White Background with Brand Emblem & Legal Title -->
+<div class="lg:col-span-6 bg-white rounded-lg p-8 sm:p-10 border border-slate-200 shadow-md flex flex-col justify-center items-start text-slate-800">
+<div class="flex items-center gap-3 mb-6">
+<img alt="Junk Bolt Logo" class="h-12 sm:h-14 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XXCF6XSxPEllaXMbgjk1ziI06M_86PVYdiCVuhi-a33iEoP8WEpUNTS8PdpFJznh8ODiuam111fckkHhwXU0-W9HmWm2l9cseV9uVjORsKzhqltci5kLftrh-X86638NoK_-zvg3QqLBC9vRYHyKfEzVW2GRTa2lsgHdXpyNmLNyU5Tz9tNZPwz-5icVZvRR6TNk7xRbMLUAuRW6t1csIRH8sR8NUvMBQW-2s_-RnI">
+</div>
+<h4 class="font-montserrat font-extrabold text-xl sm:text-2xl uppercase tracking-tight text-navydark-900 mt-2">
+            JUNK BOLT HAULING SERVICES, LLC.
+          </h4>
+<p class="mt-3 text-sm font-semibold text-slate-500 uppercase tracking-wider">
+            Licensed and Insured • Owner-Operated MI Fleet
+          </p>
+<p class="mt-4 text-xs text-slate-500 max-w-md leading-relaxed">
+            High-capacity 15-yard dump trailers providing residential cleanouts, furniture haul-away, and commercial construction cleanup.
+          </p>
+</div>
+</div>
+<!-- Sub-footer copyright strip -->
+<div class="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+<p class="">© 2026 Junk Bolt Hauling Services, LLC. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<a class="hover:text-brandgold transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-brandgold transition-colors" href="#">Terms and Conditions</a>
+<a class="hover:text-brandgold transition-colors" href="#">Service Areas</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // 4 Project Datasets
+    const PROJECTS_DATA = [
+      {
+        title: "GARAGE CLEANOUT",
+        loc: "Rochester Hills, MI",
+        desc: "Packed high with over ten years of discarded storage, old cabinetry, stacked cardboard boxes, obsolete electronics, and miscellaneous debris. Fully sorted, hauled, and broom-swept.",
+        time: "Completed in 3.5 Hours",
+        load: "1 Full 15-Yard Trailer",
+        finish: "Broom-Swept Finish",
+        beforeImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuCCXPA84-rcmDzaFzHxfzknpnsmy5974M7ytzlnyv34H9R9rAPe-hOVXgzkaK2OUGqZcDnLV_s_nhzdN__3oHLrwN6sMGMxWtllqFM8lSHFsAkkpfw3kxN9NS3gd5ES0qdy_5rurQmW3z28iQmxhO-RUN_M8bqaQuQnx5YwT8zmBbKqOwkZbuM8XouPYXLS_pt0a_UrfF3bG2jCtaw_aJGGpq4rpfyQ9uDkg02sY705pVWHwRgRagkKOw",
+        afterImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPEpQ7Y5iwA_8t0fZpJCcciufRanSwOJjv0EWWIjuoKOG5SResPo0Bj_hmiAFBFY7KJJXHzGpU3Bq3JvsB0oe8HGhDlo9nNcjM8hCUQri7EhjOXOGjyoIaROEl1dE-B4pKEUmJsir1LMfmVC2dj4vMauLnhZ4f8aRm1G_ax_M7m_3QSz4-B7gNazmjkosXPbpfs16VVrwqzEJMbJ1LJtxzqJXNjfj66Ex1iNCmGAhNtj6GGyNWm89ERw"
+      },
+      {
+        title: "DUMPSTER CORRAL & LOT SWEEP",
+        loc: "Royal Oak, MI",
+        desc: "Commercial waste enclosure completely inundated with discarded cardboard packaging, loose black bags, broken furniture, and property refuse. Completely cleared, corral doors freed, and concrete power-swept.",
+        time: "Completed in 2 Hours",
+        load: "Commercial Overflow Cleanout",
+        finish: "100% Debris Cleared & Swept",
+        beforeImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAILaDXOW_9HnSr0G5bHzzK1cR6gNVs1q3jhl-k3Wp0y7z-eqNlBZKiKNRo2_loOOWVcn2PiN_VMzM5XNaSMgvSf_9IEm58b4BhHOunniqYFFJbJjbtqzbzfcWQMNUSXhPp4x7h2opcuSxcPfp-9m_xT8G2DR3r7Dkg9TF-v8Jc1aNyvPoA_2KweOGTWOVa_7qgeVyOkpfmrWrj8iTGFmUYPHNPQnKR6LBYTN6Kkb2idIXIi7ylZ7DkHQ",
+        afterImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuC-HK7voKVw5HTHSFJ7UUA6vqYoBCPgBS_ayNY5SuItethMhA8iU-VsRRshk05Yfgu1i5e_c8wggvHdvTktG8Af94GXXQxj2ahDSQw80qan6R9FWDbPhp7KUEflF-IONKrf2EUlZPAbpVOTPQiiO4ot_jMhvrnE1koBxM04tr1RntGbYJ1cYtLPNGqkgC3qw_MpRJjwQITmtkXmffcGB-Rn5vyKtpYCjtVEx8vPqz38jAZSr0p-zBa60g"
+      },
+      {
+        title: "SHED DEMOLITION & YARD CLEARING",
+        loc: "Bloomfield Hills, MI",
+        desc: "Weathered, dilapidated open-air wooden outbuilding structure overflowing with overgrown vegetation, stacked firewood, and scrap lumber. Completely dismantled to ground level with fence line cleared and raked.",
+        time: "Completed in 1 Day",
+        load: "Full Demolition & Haul",
+        finish: "Cleared to Fence Line",
+        beforeImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuCR68aD7cPsFPWXpSbyCdc-Ifle6-A5JuuoneUEGbhwvwA14m9XRIr2gHJH7yhK1dI_vISqZ5f5xUkdiEWH2lFFxbjyC5KJSEOUmcA8puxRYd6M7r4kWoF8weojPu785DdBHrN-TizuLFHeV96PdfUz-od52gUv93tgHFLNlLcj_ZRQdYyl3AriGZIzRK4NHQg1hH4XpwiVNHmZi7RyM4bZq_ySs7ibP-HPwftMU8sewxRCkKEq6D_hFw",
+        afterImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuAxph0umkuDWIxVDwffRguOW28VMQvGEE4e8JrPE77ShQigrnqfLKGnpIepJ5em_grPboEGtu7DO2yLr9Tm5MnYALdg6YlrHzHO6oUspivBwAVFDWWp-uq-p5842aMABXDRVI_FX0qXh__LVZsYJZUyBYqK6t5bLjpUBJJ6bfa1SXJdnrr93qPqxi6p9HBbFmuI0OVPq9e482-XNzxfR--o_ba7I1iEbg5EJfpEA9mKvA4lWRUmX2J2ug"
+      },
+      {
+        title: "COLLAPSED OUTBUILDING TEARDOWN",
+        loc: "Birmingham, MI",
+        desc: "Severe structural failure with caved-in roof trusses, buckled wall panels, broken doorways, and scattered debris hazard. Demolished safely piece-by-piece, removed via 15-yard trailer, and ground fully leveled.",
+        time: "Completed in 1 Day",
+        load: "Heavy Structural Demolition",
+        finish: "Ground-Level Cleared",
+        beforeImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuBCqdL0__0t5k0YO8yclc2FKjZGE_1clF94k5D0S_lWKgPISaywmiUJvra-Ixzns7iTxv8SQYzBSdF1LUxSSRbwLx3gsXv0-4lXqM2HXq-IgF2uE-V-3GiPrO0tqgb0WqcqzNFF2Cj-if5syWpQkDryUxaVJxKZQWK7xp2M4qTuKnuXCxOCuYN0aAcagcqNFaK4g2zx_9yLt_qTMjYMemgO4viIKGs0NE7pvxakkncpRJv7vrhAqLzDMQ",
+        afterImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuDt0NIYUzJrcc8T25aTK3AdRMGD9vtNfpKRIPZu12vBNcOWTbhKuBT5ucBSXIlelmaoZnfs5NlANNLeKcP1imj5qT2IryMB1490j5xdpsQ4zvYpdm7u8rqyrZRkWbrkYn4KjaPsyNuWGwoQOx3FwI9HYI-lzFp47gRj-yzUERrV44nCCPqgFT48OE_V7mPJ4qN_1UENK0OHgRvoc_a2k5tPB9Io84o7e4_9yehxvIW7THmbiLUjXEfZxQ"
+      }
+    ];
+
+    let currentProjectIndex = 0;
+
+    function switchProject(index) {
+      if (index < 0 || index >= PROJECTS_DATA.length) return;
+      currentProjectIndex = index;
+      const data = PROJECTS_DATA[index];
+
+      // Update text fields
+      document.getElementById('project-title').textContent = data.title;
+      document.getElementById('project-loc').textContent = data.loc;
+      document.getElementById('project-desc').textContent = data.desc;
+      document.getElementById('stat-time').textContent = data.time;
+      document.getElementById('stat-load').textContent = data.load;
+      document.getElementById('stat-finish').textContent = data.finish;
+
+      // Update images
+      const beforeImg = document.getElementById('before-img-elem');
+      const afterImg = document.getElementById('after-img-elem');
+      beforeImg.src = data.beforeImg;
+      afterImg.src = data.afterImg;
+
+      // Reset slider to center
+      const slider = document.getElementById('before-after-range');
+      if (slider) {
+        slider.value = 50;
+        updateSliderPosition(50);
+      }
+
+      // Update Tab Styles
+      const tabs = document.querySelectorAll('.project-tab');
+      tabs.forEach((tab, i) => {
+        const dot = tab.querySelector('span:first-child');
+        if (i === index) {
+          tab.className = "project-tab px-4 sm:px-5 py-2.5 rounded font-montserrat font-bold text-xs sm:text-sm uppercase tracking-wider transition-all bg-navydark-900 text-brandgold shadow-sm border border-navydark-900 flex items-center gap-2";
+          if (dot) dot.className = "w-2 h-2 rounded-full bg-brandgold";
+        } else {
+          tab.className = "project-tab px-4 sm:px-5 py-2.5 rounded font-montserrat font-bold text-xs sm:text-sm uppercase tracking-wider transition-all bg-white text-slate-700 border border-slate-300 hover:border-brandgold hover:text-navydark-900 flex items-center gap-2";
+          if (dot) dot.className = "w-2 h-2 rounded-full bg-slate-400";
+        }
+      });
+
+      // Update Card Styles
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach((card, i) => {
+        const tag = card.querySelector('.font-montserrat.uppercase.px-2');
+        if (i === index) {
+          card.classList.add('border-brandgold', 'shadow-md');
+          card.classList.remove('border-slate-200', 'shadow-sm');
+          if (tag) {
+            tag.classList.add('bg-brandgold', 'text-navydark-950');
+            tag.classList.remove('bg-slate-100', 'text-slate-700');
+          }
+        } else {
+          card.classList.remove('border-brandgold', 'shadow-md');
+          card.classList.add('border-slate-200', 'shadow-sm');
+          if (tag) {
+            tag.classList.remove('bg-brandgold', 'text-navydark-950');
+            tag.classList.add('bg-slate-100', 'text-slate-700');
+          }
+        }
+      });
+
+      syncImgWidth();
+    }
+
+    function updateSliderPosition(val) {
+      const beforeWrap = document.getElementById('before-image-wrapper');
+      const divider = document.getElementById('slider-divider');
+      if (beforeWrap) beforeWrap.style.width = val + '%';
+      if (divider) divider.style.left = val + '%';
+    }
+
+    function syncImgWidth() {
+      const container = document.getElementById('slider-container');
+      const beforeImg = document.getElementById('before-img-elem');
+      if (container && beforeImg) {
+        beforeImg.style.width = container.offsetWidth + 'px';
+      }
+    }
+
+    (function() {
+      const slider = document.getElementById('before-after-range');
+      if (slider) {
+        slider.addEventListener('input', function() {
+          updateSliderPosition(slider.value);
+        });
+        slider.addEventListener('change', function() {
+          updateSliderPosition(slider.value);
+        });
+      }
+      window.addEventListener('resize', syncImgWidth);
+      window.addEventListener('load', syncImgWidth);
+      setTimeout(syncImgWidth, 150);
+      updateSliderPosition(50);
+    })();
+  </script>
+
+
+</body></html>

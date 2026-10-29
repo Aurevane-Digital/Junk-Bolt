@@ -1,0 +1,6 @@
+{
+  "name": "Junk Bolt - Hauling & Junk Removal Services",
+  "description": "Professional junk removal and hauling services in Southeastern Michigan with high-capacity 15-yard dump trailers, upfront pricing, and interactive before-and-after project transformations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
