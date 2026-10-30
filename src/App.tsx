@@ -3,7 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import AboutSection from "./components/AboutSection";
@@ -15,8 +17,23 @@ import ServiceAreasSection from "./components/ServiceAreasSection";
 import QuoteSection from "./components/QuoteSection";
 import Footer from "./components/Footer";
 
+gsap.registerPlugin(ScrollTrigger);
+
+// Global performance tuning: limit scroll callback overhead and decouple from high-rate scroll events
+ScrollTrigger.config({
+  limitCallbacks: true,
+  syncInterval: 50,
+});
+
 export default function App() {
   const [selectedService, setSelectedService] = useState<string>("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const scrollTo = (id: string) => {
     const element = document.getElementById(id);

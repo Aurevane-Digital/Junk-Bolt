@@ -23,17 +23,17 @@ export default function Footer({ onNavClick }: FooterProps) {
       if (cardsGridRef.current) {
         gsap.fromTo(
           cardsGridRef.current.children,
-          { opacity: 0, y: 30 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.15,
+            duration: 0.4,
+            stagger: 0.05,
             ease: "power2.out",
             scrollTrigger: {
               trigger: footerRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
+              start: "top 95%",
+              once: true,
             },
           }
         );
@@ -48,7 +48,7 @@ export default function Footer({ onNavClick }: FooterProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={cardsGridRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Side: Navy Card with Gold Details */}
-          <div className="lg:col-span-6 bg-navydark-850 text-white rounded-lg p-8 sm:p-10 shadow-lg flex flex-col justify-between border border-slate-700 transition-all duration-300 hover:border-brandgold/40 hover:shadow-xl will-change-transform">
+          <div className="lg:col-span-6 bg-navydark-850 text-white rounded-lg p-8 sm:p-10 shadow-lg flex flex-col justify-between border border-slate-700 transition-all duration-300 hover:border-brandgold/40 hover:shadow-xl">
             <div className="flex flex-col">
               <span className="text-xs font-bold font-montserrat tracking-widest uppercase text-brandgold mb-1">
                 DIRECT CONTACT
@@ -116,7 +116,7 @@ export default function Footer({ onNavClick }: FooterProps) {
           </div>
 
           {/* Right Side: Brand Emblem & Legal Title */}
-          <div className="lg:col-span-6 bg-slate-900/90 rounded-lg p-8 sm:p-10 border border-slate-800 shadow-md flex flex-col justify-center items-start text-slate-100 transition-all duration-300 hover:border-brandgold/40 hover:shadow-xl will-change-transform">
+          <div className="lg:col-span-6 bg-slate-900/90 rounded-lg p-8 sm:p-10 border border-slate-800 shadow-md flex flex-col justify-center items-start text-slate-100 transition-all duration-300 hover:border-brandgold/40 hover:shadow-xl">
             <div className="flex items-center gap-3 mb-6">
               <img
                 alt="Junk Bolt Logo"

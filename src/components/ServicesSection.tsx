@@ -27,16 +27,16 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current.children,
-          { opacity: 0, y: 20 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
-            stagger: 0.1,
+            duration: 0.4,
+            stagger: 0.06,
             ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
+              start: "top 95%",
               once: true,
             },
           }
@@ -47,16 +47,16 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
       if (cardsGridRef.current) {
         gsap.fromTo(
           cardsGridRef.current.children,
-          { opacity: 0, y: 35 },
+          { opacity: 0, y: 18 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.12,
-            ease: "power3.out",
+            duration: 0.45,
+            stagger: 0.05,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: cardsGridRef.current,
-              start: "top 80%",
+              trigger: sectionRef.current,
+              start: "top 90%",
               once: true,
             },
           }

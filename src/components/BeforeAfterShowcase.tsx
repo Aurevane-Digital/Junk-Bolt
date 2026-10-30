@@ -46,17 +46,17 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current.children,
-          { opacity: 0, y: 25 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
-            stagger: 0.1,
+            duration: 0.4,
+            stagger: 0.06,
             ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
-              toggleActions: "play none none none",
+              start: "top 95%",
+              once: true,
             },
           }
         );
@@ -65,17 +65,16 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
       if (showcaseBoxRef.current) {
         gsap.fromTo(
           showcaseBoxRef.current,
-          { opacity: 0, y: 35, scale: 0.98 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: 0.85,
-            ease: "power3.out",
+            duration: 0.45,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: showcaseBoxRef.current,
-              start: "top 80%",
-              toggleActions: "play none none none",
+              trigger: sectionRef.current,
+              start: "top 90%",
+              once: true,
             },
           }
         );
@@ -84,17 +83,17 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
       if (cardsGridRef.current) {
         gsap.fromTo(
           cardsGridRef.current.children,
-          { opacity: 0, y: 30 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
-            stagger: 0.1,
+            duration: 0.4,
+            stagger: 0.05,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: cardsGridRef.current,
+              trigger: sectionRef.current,
               start: "top 85%",
-              toggleActions: "play none none none",
+              once: true,
             },
           }
         );
@@ -165,7 +164,7 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
         {/* Featured Interactive Slider Comparison Box */}
         <div
           ref={showcaseBoxRef}
-          className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden mb-12 will-change-transform"
+          className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden mb-12"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12">
             {/* Slider container */}
@@ -336,7 +335,7 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
                 <div
                   key={proj.id}
                   onClick={() => handleSelectProject(idx)}
-                  className={`project-card cursor-pointer rounded-lg border-2 bg-white p-4 transition-all duration-200 hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between group will-change-transform ${
+                  className={`project-card cursor-pointer rounded-lg border-2 bg-white p-4 transition-all duration-200 hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between group ${
                     isSelected
                       ? "border-brandgold shadow-md ring-1 ring-brandgold/40"
                       : "border-slate-200 shadow-sm hover:border-brandgold/60"

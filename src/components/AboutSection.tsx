@@ -26,15 +26,15 @@ export default function AboutSection({ onGetEstimate }: AboutSectionProps) {
       if (leftColRef.current) {
         gsap.fromTo(
           leftColRef.current,
-          { opacity: 0, x: -30 },
+          { opacity: 0, x: -16 },
           {
             opacity: 1,
             x: 0,
-            duration: 0.9,
-            ease: "power3.out",
+            duration: 0.45,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
+              start: "top 95%",
               once: true,
             },
           }
@@ -44,16 +44,16 @@ export default function AboutSection({ onGetEstimate }: AboutSectionProps) {
       if (badgeRef.current) {
         gsap.fromTo(
           badgeRef.current,
-          { scale: 0, rotation: -15 },
+          { opacity: 0, scale: 0.85 },
           {
+            opacity: 1,
             scale: 1,
-            rotation: 0,
-            duration: 0.8,
-            delay: 0.2,
-            ease: "back.out(1.5)",
+            duration: 0.4,
+            delay: 0.1,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
+              start: "top 95%",
               once: true,
             },
           }
@@ -65,16 +65,16 @@ export default function AboutSection({ onGetEstimate }: AboutSectionProps) {
         const elements = rightColRef.current.children;
         gsap.fromTo(
           elements,
-          { opacity: 0, y: 25 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
-            stagger: 0.1,
+            duration: 0.4,
+            stagger: 0.05,
             ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
+              start: "top 95%",
               once: true,
             },
           }
@@ -90,7 +90,7 @@ export default function AboutSection({ onGetEstimate }: AboutSectionProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Trailer Photo with Emblem Badge */}
-          <div ref={leftColRef} className="lg:col-span-6 relative will-change-transform">
+          <div ref={leftColRef} className="lg:col-span-6 relative">
             <div className="relative rounded-lg overflow-hidden shadow-lg border border-slate-200 group">
               <img
                 alt="Junk Bolt owner standing atop heavy-duty hauling trailer"
@@ -102,7 +102,7 @@ export default function AboutSection({ onGetEstimate }: AboutSectionProps) {
             {/* Vintage Badge overlapping top-left with muted gold tone */}
             <div
               ref={badgeRef}
-              className="absolute -top-6 -left-4 sm:-top-8 sm:-left-6 w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-brandgold text-navydark-950 border-4 border-white shadow-xl flex flex-col items-center justify-center p-2 text-center select-none transition-transform duration-300 hover:scale-110 hover:rotate-3 will-change-transform"
+              className="absolute -top-6 -left-4 sm:-top-8 sm:-left-6 w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-brandgold text-navydark-950 border-4 border-white shadow-xl flex flex-col items-center justify-center p-2 text-center select-none transition-transform duration-300 hover:scale-110 hover:rotate-3"
             >
               <span className="text-[9px] sm:text-[10px] font-montserrat font-bold tracking-widest uppercase">
                 JUNK BOLT

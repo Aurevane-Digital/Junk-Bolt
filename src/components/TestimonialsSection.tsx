@@ -22,17 +22,17 @@ export default function TestimonialsSection() {
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current.children,
-          { opacity: 0, y: 20 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
-            stagger: 0.1,
+            duration: 0.4,
+            stagger: 0.06,
             ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
-              toggleActions: "play none none none",
+              start: "top 95%",
+              once: true,
             },
           }
         );
@@ -41,17 +41,17 @@ export default function TestimonialsSection() {
       if (cardsGridRef.current) {
         gsap.fromTo(
           cardsGridRef.current.children,
-          { opacity: 0, y: 35 },
+          { opacity: 0, y: 18 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: "power3.out",
+            duration: 0.45,
+            stagger: 0.05,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: cardsGridRef.current,
-              start: "top 80%",
-              toggleActions: "play none none none",
+              trigger: sectionRef.current,
+              start: "top 90%",
+              once: true,
             },
           }
         );
@@ -60,16 +60,16 @@ export default function TestimonialsSection() {
       if (bannerRef.current) {
         gsap.fromTo(
           bannerRef.current,
-          { opacity: 0, y: 30 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.75,
+            duration: 0.4,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: bannerRef.current,
+              trigger: sectionRef.current,
               start: "top 85%",
-              toggleActions: "play none none none",
+              once: true,
             },
           }
         );
@@ -97,7 +97,7 @@ export default function TestimonialsSection() {
           {REVIEWS_DATA.slice(0, 2).map((rev) => (
             <div
               key={rev.id}
-              className="bg-white text-slate-800 rounded-lg p-8 sm:p-10 shadow-md flex flex-col justify-between border-t-4 border-t-brandgold border border-slate-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5 will-change-transform"
+              className="bg-white text-slate-800 rounded-lg p-8 sm:p-10 shadow-md flex flex-col justify-between border-t-4 border-t-brandgold border border-slate-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5"
             >
               <div className="flex flex-col">
                 <div className="flex items-center gap-1 text-brandgold mb-5">
@@ -127,7 +127,7 @@ export default function TestimonialsSection() {
         {/* Google Review Prompt Banner */}
         <div
           ref={bannerRef}
-          className="mt-10 p-6 sm:p-8 rounded-lg bg-white border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-300 hover:border-brandgold/40 hover:shadow-md will-change-transform"
+          className="mt-10 p-6 sm:p-8 rounded-lg bg-white border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-300 hover:border-brandgold/40 hover:shadow-md"
         >
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
             <div className="w-12 h-12 rounded-full bg-amber-50 border border-brandgold/40 flex items-center justify-center shrink-0 text-brandgold-dark shadow-sm transition-transform hover:scale-110">

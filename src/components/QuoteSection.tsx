@@ -38,17 +38,17 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current.children,
-          { opacity: 0, y: 20 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
-            stagger: 0.1,
+            duration: 0.4,
+            stagger: 0.06,
             ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
-              toggleActions: "play none none none",
+              start: "top 95%",
+              once: true,
             },
           }
         );
@@ -57,17 +57,16 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
       if (formBoxRef.current) {
         gsap.fromTo(
           formBoxRef.current,
-          { opacity: 0, y: 30, scale: 0.98 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "power3.out",
+            duration: 0.45,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: formBoxRef.current,
-              start: "top 85%",
-              toggleActions: "play none none none",
+              trigger: sectionRef.current,
+              start: "top 90%",
+              once: true,
             },
           }
         );
@@ -213,7 +212,7 @@ export default function QuoteSection({ prefilledService }: QuoteSectionProps) {
         {/* Quote Form Container */}
         <div
           ref={formBoxRef}
-          className="bg-white rounded-lg shadow-xl border border-slate-200 p-6 sm:p-10 will-change-transform"
+          className="bg-white rounded-lg shadow-xl border border-slate-200 p-6 sm:p-10"
         >
           {submitted ? (
             <div className="p-6 sm:p-8 rounded-lg bg-amber-50/70 border border-brandgold-dark text-slate-900 text-center animate-in zoom-in-95 duration-200">

@@ -26,17 +26,17 @@ export default function ServiceAreasSection({ onRequestQuote }: ServiceAreasSect
       if (leftColRef.current) {
         gsap.fromTo(
           leftColRef.current.children,
-          { opacity: 0, x: -25 },
+          { opacity: 0, x: -15 },
           {
             opacity: 1,
             x: 0,
-            duration: 0.75,
-            stagger: 0.12,
+            duration: 0.4,
+            stagger: 0.05,
             ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
-              toggleActions: "play none none none",
+              start: "top 95%",
+              once: true,
             },
           }
         );
@@ -45,17 +45,16 @@ export default function ServiceAreasSection({ onRequestQuote }: ServiceAreasSect
       if (mapColRef.current) {
         gsap.fromTo(
           mapColRef.current,
-          { opacity: 0, scale: 0.95, y: 30 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
-            scale: 1,
             y: 0,
-            duration: 0.85,
-            ease: "power3.out",
+            duration: 0.45,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: mapColRef.current,
-              start: "top 80%",
-              toggleActions: "play none none none",
+              trigger: sectionRef.current,
+              start: "top 90%",
+              once: true,
             },
           }
         );
@@ -149,7 +148,7 @@ export default function ServiceAreasSection({ onRequestQuote }: ServiceAreasSect
           </div>
 
           {/* Right Column: Map Visual */}
-          <div ref={mapColRef} className="lg:col-span-6 will-change-transform">
+          <div ref={mapColRef} className="lg:col-span-6">
             <div className="rounded-lg overflow-hidden border border-slate-700 shadow-2xl bg-white group">
               <div
                 className="relative w-full h-[320px] bg-cover bg-center transition-transform duration-500 group-hover:scale-105"

@@ -41,31 +41,31 @@ export default function Hero({ onSeeServices }: HeroProps) {
       }
 
       // Timeline for content entrance
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
       if (headlineLine1Ref.current && headlineLine2Ref.current) {
         tl.fromTo(
           [headlineLine1Ref.current, headlineLine2Ref.current],
-          { opacity: 0, y: 35 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, delay: 0.1 }
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.45, stagger: 0.08 }
         );
       }
 
       if (subtextRef.current) {
         tl.fromTo(
           subtextRef.current,
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.6 },
-          "-=0.4"
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.35 },
+          "-=0.2"
         );
       }
 
       if (buttonsRef.current) {
         tl.fromTo(
           buttonsRef.current.children,
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 },
-          "-=0.3"
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.35, stagger: 0.06 },
+          "-=0.15"
         );
       }
     }, containerRef);

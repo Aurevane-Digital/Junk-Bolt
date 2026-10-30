@@ -20,15 +20,15 @@ export default function WhyChooseUs() {
       if (headingRef.current) {
         gsap.fromTo(
           headingRef.current,
-          { opacity: 0, y: 25 },
+          { opacity: 0, y: 15 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
+            duration: 0.4,
             ease: "power2.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
+              start: "top 95%",
               once: true,
             },
           }
@@ -38,17 +38,17 @@ export default function WhyChooseUs() {
       if (gridRef.current) {
         gsap.fromTo(
           gridRef.current.children,
-          { opacity: 0, scale: 0.75, y: 30 },
+          { opacity: 0, scale: 0.95, y: 15 },
           {
             opacity: 1,
             scale: 1,
             y: 0,
-            duration: 0.7,
-            stagger: 0.08,
-            ease: "back.out(1.4)",
+            duration: 0.42,
+            stagger: 0.05,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: gridRef.current,
-              start: "top 80%",
+              trigger: sectionRef.current,
+              start: "top 90%",
               once: true,
             },
           }
