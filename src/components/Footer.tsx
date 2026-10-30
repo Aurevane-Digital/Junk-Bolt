@@ -115,22 +115,22 @@ export default function Footer({ onNavClick }: FooterProps) {
             </div>
           </div>
 
-          {/* Right Side: White Background with Brand Emblem & Legal Title */}
-          <div className="lg:col-span-6 bg-white rounded-lg p-8 sm:p-10 border border-slate-200 shadow-md flex flex-col justify-center items-start text-slate-800 transition-all duration-300 hover:border-brandgold/40 hover:shadow-xl will-change-transform">
+          {/* Right Side: Brand Emblem & Legal Title */}
+          <div className="lg:col-span-6 bg-slate-900/90 rounded-lg p-8 sm:p-10 border border-slate-800 shadow-md flex flex-col justify-center items-start text-slate-100 transition-all duration-300 hover:border-brandgold/40 hover:shadow-xl will-change-transform">
             <div className="flex items-center gap-3 mb-6">
               <img
                 alt="Junk Bolt Logo"
-                className="h-12 sm:h-14 w-auto object-contain transition-transform duration-200 hover:scale-105"
-                src="https://lh3.googleusercontent.com/aida/AEtjO1XXCF6XSxPEllaXMbgjk1ziI06M_86PVYdiCVuhi-a33iEoP8WEpUNTS8PdpFJznh8ODiuam111fckkHhwXU0-W9HmWm2l9cseV9uVjORsKzhqltci5kLftrh-X86638NoK_-zvg3QqLBC9vRYHyKfEzVW2GRTa2lsgHdXpyNmLNyU5Tz9tNZPwz-5icVZvRR6TNk7xRbMLUAuRW6t1csIRH8sR8NUvMBQW-2s_-RnI"
+                className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 hover:scale-105 drop-shadow-md"
+                src="/assets/aistudio/junkbolt-logo-transparent_c4fe9438.svg"
               />
             </div>
-            <h4 className="font-montserrat font-extrabold text-xl sm:text-2xl uppercase tracking-tight text-navydark-900 mt-2">
+            <h4 className="font-montserrat font-extrabold text-xl sm:text-2xl uppercase tracking-tight text-white mt-2">
               JUNK BOLT HAULING SERVICES, LLC.
             </h4>
-            <p className="mt-3 text-sm font-semibold text-slate-500 uppercase tracking-wider">
+            <p className="mt-3 text-sm font-semibold text-brandgold uppercase tracking-wider">
               Licensed and Insured • Owner-Operated MI Fleet
             </p>
-            <p className="mt-4 text-xs text-slate-500 max-w-md leading-relaxed">
+            <p className="mt-4 text-xs text-slate-300 max-w-md leading-relaxed">
               High-capacity 15-yard dump trailers providing residential cleanouts, furniture haul-away, and commercial construction cleanup.
             </p>
           </div>

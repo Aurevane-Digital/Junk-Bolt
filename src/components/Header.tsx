@@ -37,7 +37,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
     <header
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-md h-[72px]"
+          ? "bg-navydark-950/95 backdrop-blur-md border-b border-slate-800/80 shadow-lg h-[72px]"
           : "bg-gradient-to-b from-black/85 via-black/40 to-transparent border-b border-transparent h-20 sm:h-24"
       }`}
     >
@@ -51,8 +51,8 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           >
             <img
               alt="Junk Bolt Logo"
-              className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.03]"
-              src="https://lh3.googleusercontent.com/aida/AEtjO1XXCF6XSxPEllaXMbgjk1ziI06M_86PVYdiCVuhi-a33iEoP8WEpUNTS8PdpFJznh8ODiuam111fckkHhwXU0-W9HmWm2l9cseV9uVjORsKzhqltci5kLftrh-X86638NoK_-zvg3QqLBC9vRYHyKfEzVW2GRTa2lsgHdXpyNmLNyU5Tz9tNZPwz-5icVZvRR6TNk7xRbMLUAuRW6t1csIRH8sR8NUvMBQW-2s_-RnI"
+              className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.03] drop-shadow-md"
+              src="/assets/aistudio/junkbolt-logo-transparent_c4fe9438.svg"
             />
           </a>
 
@@ -62,11 +62,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
               <a
                 key={link.label}
                 href={link.href}
-                className={`relative py-1 tracking-wide transition-colors whitespace-nowrap after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brandgold after:transition-all after:duration-250 hover:after:w-full ${
-                  isScrolled
-                    ? "text-slate-800 hover:text-brandgold-dark"
-                    : "text-white/90 hover:text-brandgold drop-shadow-sm"
-                }`}
+                className="relative py-1 tracking-wide transition-colors whitespace-nowrap text-white/90 hover:text-brandgold drop-shadow-sm after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-brandgold after:transition-all after:duration-250 hover:after:w-full"
               >
                 {link.label}
               </a>
@@ -78,11 +74,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
         <div className="flex items-center gap-3 sm:gap-4">
           <a
             aria-label="Junk Bolt on Instagram"
-            className={`w-9 h-9 rounded-md border flex items-center justify-center transition-all duration-150 hover:scale-105 active:scale-95 ${
-              isScrolled
-                ? "border-slate-300 text-slate-700 hover:text-brandgold-dark hover:border-brandgold bg-slate-50 hover:bg-amber-50/50"
-                : "border-white/25 text-white hover:text-brandgold hover:border-brandgold bg-white/10 backdrop-blur-sm hover:bg-white/20"
-            }`}
+            className="w-9 h-9 rounded-md border border-white/20 text-white hover:text-brandgold hover:border-brandgold bg-white/10 backdrop-blur-sm hover:bg-white/20 flex items-center justify-center transition-all duration-150 hover:scale-105 active:scale-95"
             href="https://www.instagram.com/junk.bolt/"
             rel="noopener noreferrer"
             target="_blank"
@@ -93,11 +85,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           </a>
 
           <a
-            className={`hidden sm:flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded border whitespace-nowrap transition-all duration-150 hover:shadow-sm hover:scale-[1.02] active:scale-[0.98] ${
-              isScrolled
-                ? "border-slate-200 text-slate-800 hover:border-brandgold-dark bg-white"
-                : "border-white/30 text-white hover:border-brandgold bg-white/10 backdrop-blur-sm hover:bg-white/20"
-            }`}
+            className="hidden sm:flex items-center gap-1.5 text-xs font-bold px-3 py-2 rounded border whitespace-nowrap transition-all duration-150 hover:shadow-sm hover:scale-[1.02] active:scale-[0.98] border-white/20 text-white hover:border-brandgold bg-white/10 backdrop-blur-sm hover:bg-white/20"
             href="tel:2487097911"
           >
             <span className="material-symbols-outlined text-[16px] text-brandgold">call</span>
@@ -120,9 +108,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           {/* Mobile hamburger button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`lg:hidden p-2 focus:outline-none transition-transform active:scale-90 ${
-              isScrolled ? "text-slate-800 hover:text-slate-900" : "text-white hover:text-brandgold"
-            }`}
+            className="lg:hidden p-2 focus:outline-none transition-transform active:scale-90 text-white hover:text-brandgold"
             aria-label="Toggle menu"
           >
             <span className="material-symbols-outlined text-2xl">
