@@ -139,25 +139,16 @@ export default function Footer({ onNavClick }: FooterProps) {
         {/* Sub-footer copyright strip */}
         <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
           <p>© 2026 Junk Bolt Hauling Services, LLC. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <button
-              onClick={() => onNavClick("about")}
-              className="hover:text-brandgold transition-colors cursor-pointer"
+          <div className="flex items-center gap-1.5 text-xs text-slate-400">
+            <span>Developed by</span>
+            <a
+              href="https://www.instagram.com/aurevanedigital/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brandgold hover:text-brandgold-hover font-semibold transition-colors underline-offset-2 hover:underline"
             >
-              Privacy Policy
-            </button>
-            <button
-              onClick={() => onNavClick("about")}
-              className="hover:text-brandgold transition-colors cursor-pointer"
-            >
-              Terms and Conditions
-            </button>
-            <button
-              onClick={() => onNavClick("areas")}
-              className="hover:text-brandgold transition-colors cursor-pointer"
-            >
-              Service Areas
-            </button>
+              Aurevane Digital
+            </a>
           </div>
         </div>
       </div>

@@ -10,29 +10,18 @@ interface BeforeAfterShowcaseProps {
 }
 
 export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowcaseProps) {
-  // Default to Project 4 (index 3) to match screenshot
-  const [selectedIdx, setSelectedIdx] = useState<number>(3);
+  // Default to Project 1 (Commercial Dumpster)
+  const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [sliderPos, setSliderPos] = useState<number>(50);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const showcaseBoxRef = useRef<HTMLDivElement>(null);
   const cardsGridRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [containerWidth, setContainerWidth] = useState<number>(800);
 
-  const activeProject: ProjectItem = PROJECTS_DATA[selectedIdx];
-
-  // Measure container width to ensure before image exactly matches after image proportions
-  useEffect(() => {
-    const updateWidth = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.offsetWidth);
-      }
-    };
-    updateWidth();
-    window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
-  }, []);
+  const activeProject: ProjectItem = PROJECTS_DATA[selectedIdx] || PROJECTS_DATA[0];
 
   // GSAP ScrollTrigger reveals
   useEffect(() => {
@@ -108,6 +97,51 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
     setSliderPos(50);
   };
 
+  const updateSliderFromClientX = (clientX: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    if (rect.width <= 0) return;
+    const offsetX = clientX - rect.left;
+    const clampedPct = Math.max(0, Math.min(100, (offsetX / rect.width) * 100));
+    setSliderPos(Math.round(clampedPct * 10) / 10);
+  };
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+    updateSliderFromClientX(e.clientX);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    updateSliderFromClientX(e.clientX);
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isDragging) {
+      setIsDragging(false);
+      try {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      } catch {}
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      setSliderPos((prev) => Math.max(0, prev - 5));
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      setSliderPos((prev) => Math.min(100, prev + 5));
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      setSliderPos(0);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      setSliderPos(100);
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -124,12 +158,12 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
                 BEFORE &amp; AFTER: REAL TRANSFORMATIONS
               </h2>
               <p className="mt-3 text-slate-600 text-base sm:text-lg max-w-3xl leading-relaxed">
-                Explore all 4 real local transformations from garages and dumpster corrals to shed demolitions. Drag the interactive slider above or click any project card below to inspect full results.
+                Explore all 4 real local transformations from commercial dumpster corrals to residential garage cleanouts. Drag the interactive comparison slider anywhere across the photo or click any project below to inspect the transformation.
               </p>
             </div>
             <div className="hidden lg:flex items-center gap-2 text-xs font-montserrat font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-3.5 py-2 rounded border border-slate-200">
               <span className="material-symbols-outlined text-brandgold-dark text-[18px]">touch_app</span>
-              <span>Click cards below to compare</span>
+              <span>Click or drag photo to compare</span>
             </div>
           </div>
         </div>
@@ -154,7 +188,7 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
                   }`}
                 />
                 <span>
-                  {idx + 1}. {proj.title.split("&")[0].split("TEARDOWN")[0].trim()}
+                  {idx + 1}. {proj.title.split("&")[0].split("TEARDOWN")[0].split("OVERFLOW")[0].trim()}
                 </span>
               </button>
             );
@@ -167,35 +201,44 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
           className="bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden mb-12"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12">
-            {/* Slider container */}
+            {/* Slider container with pointer events */}
             <div
               ref={containerRef}
-              className="lg:col-span-8 relative bg-slate-900 min-h-[380px] sm:min-h-[460px] lg:min-h-[520px] max-h-[560px] overflow-hidden select-none group"
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              onPointerCancel={handlePointerUp}
+              onKeyDown={handleKeyDown}
+              tabIndex={0}
+              role="slider"
+              aria-label="Before and After comparison slider"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.round(sliderPos)}
+              className="lg:col-span-8 relative bg-slate-950 h-[400px] sm:h-[480px] lg:h-[540px] overflow-hidden select-none cursor-ew-resize group focus:outline-none focus:ring-2 focus:ring-brandgold touch-none"
             >
-              {/* After image (base) */}
-              <div className="absolute inset-0 w-full h-full">
-                <img
-                  alt={`${activeProject.title} After clean transformation view`}
-                  className="w-full h-full object-cover object-center transition-opacity duration-300"
-                  src={activeProject.afterImg}
-                />
-              </div>
+              {/* After image (base, clean result) */}
+              <img
+                alt={`${activeProject.title} - After clean transformation`}
+                className="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
+                draggable={false}
+                src={activeProject.afterImg}
+              />
 
-              {/* Before image (clipped over) */}
-              <div
-                className="absolute inset-0 h-full overflow-hidden will-change-[width]"
-                style={{ width: `${sliderPos}%` }}
-              >
-                <img
-                  alt={`${activeProject.title} Before cluttered state view`}
-                  className="absolute top-0 left-0 h-full max-w-none object-cover object-center transition-opacity duration-300"
-                  src={activeProject.beforeImg}
-                  style={{ width: `${containerWidth || 800}px`, minWidth: "100%" }}
-                />
-              </div>
+              {/* Before image (top layer clipped with hardware-accelerated clipPath) */}
+              <img
+                alt={`${activeProject.title} - Before cluttered state`}
+                className="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
+                draggable={false}
+                style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
+                src={activeProject.beforeImg}
+              />
 
               {/* Badges */}
-              <div className="absolute top-4 left-4 z-20 pointer-events-none">
+              <div
+                className="absolute top-4 left-4 z-20 pointer-events-none transition-opacity duration-200"
+                style={{ opacity: sliderPos < 10 ? 0.2 : 1 }}
+              >
                 <span className="px-3 py-1.5 rounded font-montserrat font-extrabold text-xs uppercase tracking-wider bg-navydark-950/90 border border-slate-700 text-white shadow-md flex items-center gap-1.5 backdrop-blur-sm">
                   <span className="material-symbols-outlined text-[15px] text-amber-400">
                     history
@@ -203,7 +246,10 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
                   BEFORE
                 </span>
               </div>
-              <div className="absolute top-4 right-4 z-20 pointer-events-none">
+              <div
+                className="absolute top-4 right-4 z-20 pointer-events-none transition-opacity duration-200"
+                style={{ opacity: sliderPos > 90 ? 0.2 : 1 }}
+              >
                 <span className="px-3 py-1.5 rounded font-montserrat font-extrabold text-xs uppercase tracking-wider bg-brandgold text-navydark-950 shadow-md flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-[15px]">check_circle</span>
                   AFTER
@@ -212,34 +258,22 @@ export default function BeforeAfterShowcase({ onBookCleanout }: BeforeAfterShowc
 
               {/* Divider line & drag handle */}
               <div
-                className="absolute top-0 bottom-0 w-1 bg-brandgold shadow-[0_0_12px_rgba(0,0,0,0.6)] z-20 pointer-events-none flex items-center justify-center transition-none"
+                className="absolute top-0 bottom-0 w-1 bg-brandgold shadow-[0_0_14px_rgba(217,155,6,0.9)] z-20 pointer-events-none flex items-center justify-center"
                 style={{ left: `${sliderPos}%` }}
               >
-                <div className="w-10 h-10 rounded-full bg-brandgold text-navydark-950 shadow-2xl flex items-center justify-center border-2 border-navydark-900 -ml-[18px] transition-transform group-hover:scale-110">
-                  <span className="material-symbols-outlined text-[20px] font-bold text-navydark-950 select-none">
-                    drag_handle
+                <div
+                  className={`w-11 h-11 rounded-full bg-navydark-950 text-brandgold shadow-2xl flex items-center justify-center border-2 border-brandgold -ml-[21px] transition-transform duration-150 ${
+                    isDragging
+                      ? "scale-110 shadow-[0_0_20px_rgba(217,155,6,0.8)]"
+                      : "group-hover:scale-105"
+                  }`}
+                >
+                  <span className="text-[11px] font-bold font-montserrat tracking-tighter flex items-center gap-0.5 select-none text-brandgold">
+                    ◀▶
                   </span>
                 </div>
               </div>
 
-              {/* Range input controller for dragging */}
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={sliderPos}
-                onChange={(e) => setSliderPos(Number(e.target.value))}
-                aria-label="Comparison slider"
-                className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 m-0 p-0"
-              />
-
-              {/* Drag Prompt Hint */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none bg-navydark-950/85 px-3 py-1 rounded-full border border-brandgold/40 backdrop-blur-sm shadow-md text-white text-[11px] font-montserrat font-semibold tracking-wider flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[14px] text-brandgold">
-                  sync_alt
-                </span>
-                DRAG TO COMPARE
-              </div>
             </div>
 
             {/* Project Details Panel */}
